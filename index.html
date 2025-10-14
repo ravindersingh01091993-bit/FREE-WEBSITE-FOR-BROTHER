@@ -3,23 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Website from Cloudflare</title>
+    <title>APM STORE NOIDA - Affordable Price Mobile</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
             font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f0f8ff;
+            line-height: 1.6;
+            background-color: #f8f9fa;
         }
-        h1 {
+
+        /* Header Styles */
+        .header {
+            background: linear-gradient(135deg, #2c5cc3 0%, #1e3a8a 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .header-image {
+            max-width: 200px;
+            height: auto;
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .store-name {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .tagline {
+            font-size: 1.5rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .welcome-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .feature-card h3 {
             color: #2c5cc3;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 2rem;
         }
     </style>
 </head>
 <body>
-    <h1>Welcome to My Website!</h1>
-    <p>This is <strong>Part 1</strong> of my project. I'm hosting this with Cloudflare Pages!</p>
-    <p>My domain is <code>dash.domain.digitalplat.org</code>.</p>
+    <!-- Header with Image -->
+    <header class="header">
+        <img src="IMG_20250805_112232.png" alt="APM STORE NOIDA" class="header-image">
+        <h1 class="store-name">APM STORE NOIDA</h1>
+        <p class="tagline">AFFORDABLE PRICE MOBILE</p>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <section class="welcome-section">
+            <h2>Welcome to APM Store</h2>
+            <p>Your trusted destination for quality mobile phones at affordable prices in Noida.</p>
+            <p>We offer the latest smartphones, accessories, and exceptional customer service.</p>
+        </section>
+
+        <div class="features">
+            <div class="feature-card">
+                <h3>📱 Latest Models</h3>
+                <p>Get the newest smartphones from top brands</p>
+            </div>
+            <div class="feature-card">
+                <h3>💰 Best Prices</h3>
+                <p>Affordable prices with warranty guarantee</p>
+            </div>
+            <div class="feature-card">
+                <h3>🔧 Expert Service</h3>
+                <p>Professional repair and maintenance services</p>
+            </div>
+            <div class="feature-card">
+                <h3>🚚 Fast Delivery</h3>
+                <p>Quick delivery across Noida region</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 APM STORE NOIDA. All rights reserved.</p>
+        <p>Visit us at: dash.domain.digitalplat.org</p>
+    </footer>
 </body>
 </html>
