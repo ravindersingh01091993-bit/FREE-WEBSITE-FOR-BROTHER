@@ -18,13 +18,14 @@
             color: #ffffff;
         }
 
-        /* Navigation Menu - Clean Text Only */
+        /* Navigation Menu - Black Background */
         .navbar {
-            background: transparent;
+            background: #000000;
             padding: 1rem 0;
             position: sticky;
             top: 0;
             z-index: 1000;
+            border-bottom: 2px solid #2c5cc3;
         }
 
         .nav-container {
@@ -43,7 +44,7 @@
         }
 
         .nav-links a {
-            color: #2c5cc3;
+            color: #ffffff;
             text-decoration: none;
             font-weight: 600;
             font-size: 1.1rem;
@@ -73,24 +74,27 @@
         .menu-toggle span {
             width: 25px;
             height: 3px;
-            background: #2c5cc3;
+            background: #ffffff;
             margin: 3px 0;
             transition: 0.3s;
         }
 
-        /* Header Styles - Clean Text Only (No Background) */
+        /* Header Styles - Golden Text Only */
         .header {
             background: transparent;
             color: white;
-            padding: 3rem 0 2rem 0;
+            padding: 3rem 0 1rem 0;
             text-align: center;
         }
 
-        .header-logo {
-            max-width: 400px;
-            height: auto;
-            margin-bottom: 1rem;
-            filter: brightness(0) invert(1); /* Makes logo white */
+        .golden-text {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #FFD700;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
 
         .tagline {
@@ -467,14 +471,27 @@
             margin-top: 0.5rem;
         }
 
+        /* Contact Phone in Follow Section */
+        .contact-phone {
+            background: linear-gradient(135deg, #2c5cc3, #1e3a8a);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1.3rem;
+            display: inline-block;
+            margin: 1rem 0;
+            text-decoration: none;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .top-section {
                 grid-template-columns: 1fr;
             }
             
-            .header-logo {
-                max-width: 300px;
+            .golden-text {
+                font-size: 2.5rem;
             }
             
             .tagline {
@@ -488,7 +505,7 @@
                 top: 100%;
                 left: 0;
                 right: 0;
-                background: #1a1a1a;
+                background: #000000;
                 padding: 1rem;
                 border-top: 2px solid #2c5cc3;
             }
@@ -517,13 +534,7 @@
     </style>
 </head>
 <body>
-    <!-- Header with Clean Text Only -->
-    <header class="header">
-        <img src="APM LOGO.png" alt="APM STORE NOIDA" class="header-logo">
-        <p class="tagline">AFFORDABLE PRICE MOBILE</p>
-    </header>
-
-    <!-- Clean Navigation Menu -->
+    <!-- Clean Navigation Menu with Black Background -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="menu-toggle" id="mobile-menu">
@@ -542,8 +553,14 @@
         </div>
     </nav>
 
+    <!-- Header with Golden Text Only -->
+    <header class="header" id="home">
+        <h1 class="golden-text">APM STORE NOIDA</h1>
+        <p class="tagline">AFFORDABLE PRICE MOBILE</p>
+    </header>
+
     <!-- Top Section: Slogan + Top Selling -->
-    <section class="top-section" id="home">
+    <section class="top-section">
         <div class="slogan-box">
             <h2>Our Promise to You</h2>
             <p>"Quality smartphones shouldn't cost a fortune. At APM Store, we bring you the latest technology at prices that make sense for everyone in Noida."</p>
@@ -672,11 +689,14 @@
         </div>
     </section>
 
-    <!-- Follow Us Section -->
+    <!-- Follow Us Section with Phone Number -->
     <section class="section" id="follow">
         <div class="follow-section">
             <h2 class="section-title" style="color: white;">Follow Our Journey</h2>
             <p style="font-size: 1.2rem; margin-bottom: 1rem;">Stay updated with our latest offers and success stories</p>
+            
+            <!-- Phone Number Added Here -->
+            <a href="tel:8512005792" class="contact-phone">📞 Call Us: 8512005792</a>
             
             <div class="social-links">
                 <a href="https://www.instagram.com/apm.noida/?next=%2F" class="social-link" target="_blank">
@@ -686,7 +706,7 @@
             </div>
             
             <div style="margin-top: 2rem; padding: 1rem; background: rgba(255,255,255,0.1); border-radius: 10px;">
-                <p>📍 <strong>Visit Us:</strong> APM Store, Noida | 📞 <strong>Call:</strong> [Your Number]</p>
+                <p>📍 <strong>Visit Us:</strong> APM Store, Noida | 🕒 <strong>Open:</strong> 10AM - 8PM</p>
             </div>
         </div>
     </section>
