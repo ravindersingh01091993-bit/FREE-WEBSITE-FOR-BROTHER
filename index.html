@@ -14,37 +14,94 @@
         body {
             font-family: 'Arial', sans-serif;
             line-height: 1.6;
-            background-color: #f8f9fa;
-            color: #333;
+            background-color: #000000;
+            color: #ffffff;
         }
 
-        /* Header Styles */
+        /* Navigation Menu */
+        .navbar {
+            background: #1a1a1a;
+            padding: 1rem 0;
+            border-bottom: 2px solid #2c5cc3;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo-small {
+            height: 40px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        .nav-links a:hover {
+            color: #2c5cc3;
+            background: rgba(44, 92, 195, 0.1);
+        }
+
+        .nav-links a.active {
+            color: #2c5cc3;
+            background: rgba(44, 92, 195, 0.2);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Header Styles - Black Theme */
         .header {
-            background: linear-gradient(135deg, #2c5cc3 0%, #1e3a8a 100%);
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
             color: white;
             padding: 2rem 0;
             text-align: center;
+            border-bottom: 3px solid #2c5cc3;
         }
 
-        .header-image {
-            max-width: 200px;
+        .header-logo {
+            max-width: 300px;
             height: auto;
             margin-bottom: 1rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        }
-
-        .store-name {
-            font-size: 2.5rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
 
         .tagline {
             font-size: 1.5rem;
             opacity: 0.9;
             font-weight: 300;
+            color: #2c5cc3;
+            margin-top: 0.5rem;
         }
 
         /* Top Section - Split Layout */
@@ -58,10 +115,10 @@
         }
 
         .slogan-box {
-            background: white;
+            background: #1a1a1a;
             padding: 2rem;
             border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(44, 92, 195, 0.3);
             border-left: 5px solid #2c5cc3;
         }
 
@@ -74,20 +131,23 @@
         .slogan-box p {
             font-size: 1.2rem;
             line-height: 1.8;
-            color: #555;
+            color: #cccccc;
         }
 
         .top-selling {
-            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
             color: white;
             padding: 2rem;
             border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+            border: 1px solid #ff6b6b;
         }
 
         .top-selling h2 {
             margin-bottom: 1rem;
             font-size: 1.8rem;
+            color: #ff6b6b;
+            text-align: center;
         }
 
         .top-phone {
@@ -95,16 +155,14 @@
         }
 
         .phone-image {
-            width: 150px;
-            height: 150px;
-            background: #f0f0f0;
-            border-radius: 10px;
+            width: 200px;
+            height: 200px;
+            border-radius: 15px;
             margin: 0 auto 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #333;
-            font-weight: bold;
+            display: block;
+            object-fit: cover;
+            border: 3px solid #ff6b6b;
+            box-shadow: 0 4px 20px rgba(255, 107, 107, 0.4);
         }
 
         /* Section Styles */
@@ -136,10 +194,10 @@
         /* Our Image Section */
         .image-section {
             text-align: center;
-            background: white;
+            background: #1a1a1a;
             padding: 2rem;
             border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(44, 92, 195, 0.3);
         }
 
         .main-store-image {
@@ -147,6 +205,7 @@
             height: auto;
             border-radius: 10px;
             margin-top: 1rem;
+            border: 2px solid #2c5cc3;
         }
 
         /* Unique Features */
@@ -157,26 +216,33 @@
         }
 
         .feature-card {
-            background: white;
+            background: #1a1a1a;
             padding: 2rem;
             border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(44, 92, 195, 0.2);
             text-align: center;
             transition: transform 0.3s ease;
+            border: 1px solid #333;
         }
 
         .feature-card:hover {
             transform: translateY(-5px);
+            border-color: #2c5cc3;
         }
 
         .feature-icon {
             font-size: 3rem;
             margin-bottom: 1rem;
+            color: #2c5cc3;
         }
 
         .feature-card h3 {
             color: #2c5cc3;
             margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: #cccccc;
         }
 
         /* Our Goal Section */
@@ -186,6 +252,7 @@
             padding: 3rem 2rem;
             border-radius: 10px;
             text-align: center;
+            box-shadow: 0 4px 20px rgba(44, 92, 195, 0.4);
         }
 
         .goal-section h2 {
@@ -207,10 +274,11 @@
         }
 
         .review-card {
-            background: white;
+            background: #1a1a1a;
             padding: 2rem;
             border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(44, 92, 195, 0.2);
+            border: 1px solid #333;
         }
 
         .review-header {
@@ -237,13 +305,57 @@
             margin-bottom: 0.5rem;
         }
 
+        .review-card p {
+            color: #cccccc;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: #1a1a1a;
+            padding: 3rem 2rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            padding: 1.5rem;
+        }
+
+        .contact-item h3 {
+            color: #2c5cc3;
+            margin-bottom: 1rem;
+        }
+
         /* Footer */
         .footer {
-            background: #333;
+            background: #1a1a1a;
             color: white;
             text-align: center;
             padding: 2rem;
             margin-top: 3rem;
+            border-top: 3px solid #2c5cc3;
+        }
+
+        .footer p {
+            color: #cccccc;
+        }
+
+        /* Price Badge */
+        .price-badge {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 0.5rem;
         }
 
         /* Responsive Design */
@@ -252,21 +364,64 @@
                 grid-template-columns: 1fr;
             }
             
-            .store-name {
-                font-size: 2rem;
+            .header-logo {
+                max-width: 250px;
             }
             
             .tagline {
                 font-size: 1.2rem;
             }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: #1a1a1a;
+                padding: 1rem;
+                border-top: 2px solid #2c5cc3;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-container {
+                padding: 0 1rem;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <img src="IMG_20250805_112232.png" alt="APM STORE NOIDA" class="header-image">
-        <h1 class="store-name">APM STORE NOIDA</h1>
+    <!-- Navigation Menu -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <img src="APM LOGO.png" alt="APM Store" class="logo-small" style="height: 40px;">
+            <div class="menu-toggle" id="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#features">Why APM</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Header with Logo Image -->
+    <header class="header" id="home">
+        <img src="APM LOGO.png" alt="APM STORE NOIDA" class="header-logo">
         <p class="tagline">AFFORDABLE PRICE MOBILE</p>
     </header>
 
@@ -277,19 +432,19 @@
             <p>"Quality smartphones shouldn't cost a fortune. At APM Store, we bring you the latest technology at prices that make sense for everyone in Noida."</p>
         </div>
         
-        <div class="top-selling">
+        <div class="top-selling" id="products">
             <h2>🔥 Top Selling This Month</h2>
             <div class="top-phone">
-                <div class="phone-image">[Phone Image]</div>
-                <h3>Samsung Galaxy A15</h3>
+                <img src="samsung-galaxy-a25-1.jpg" alt="Samsung Galaxy A25" class="phone-image">
+                <h3>Samsung Galaxy A25</h3>
                 <p>⭐ 4.5/5 Rating</p>
-                <p><strong>Best Value Budget Phone</strong></p>
+                <div class="price-badge">Best Value Budget Phone</div>
             </div>
         </div>
     </section>
 
     <!-- Section 1.2: Our Image -->
-    <section class="section">
+    <section class="section" id="about">
         <h2 class="section-title">Our Store</h2>
         <div class="image-section">
             <p>Visit our modern store in Noida for hands-on experience with all devices</p>
@@ -300,7 +455,7 @@
     </section>
 
     <!-- Section 1.3: What APM Has That Others Don't -->
-    <section class="section">
+    <section class="section" id="features">
         <h2 class="section-title">Why Choose APM Store?</h2>
         <div class="features-grid">
             <div class="feature-card">
@@ -334,7 +489,7 @@
     </section>
 
     <!-- Section 1.5: Reviews -->
-    <section class="section">
+    <section class="section" id="reviews">
         <h2 class="section-title">What Our Customers Say</h2>
         <div class="reviews-container">
             <div class="review-card">
@@ -345,7 +500,7 @@
                         <div class="review-stars">★★★★★</div>
                     </div>
                 </div>
-                <p>"Got my Samsung A15 at unbelievable price! Setup was done in 10 minutes. Best service in Noida!"</p>
+                <p>"Got my Samsung A25 at unbelievable price! Setup was done in 10 minutes. Best service in Noida!"</p>
             </div>
             
             <div class="review-card">
@@ -372,10 +527,49 @@
         </div>
     </section>
 
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <h2 class="section-title">Contact Us</h2>
+        <div class="contact-section">
+            <p>Get in touch with APM Store Noida for the best mobile deals</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h3>📍 Store Address</h3>
+                    <p>APM Store, Sector [81]<br>Noida, Uttar Pradesh</p>
+                </div>
+                <div class="contact-item">
+                    <h3>📞 Phone</h3>
+                    <p> 8512005792 </p>
+                </div>
+                <div class="contact-item">
+                    <h3>🕒 Opening Hours</h3>
+                    <p>Monday - Sunday: 10:00 AM - 6:00 PM</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="footer">
         <p>&copy; 2024 APM STORE NOIDA. All rights reserved.</p>
-        <p>Visit us at: dash.domain.digitalplat.org | Contact: [Your Phone Number]</p>
+        <p>Visit us at: dash.domain.digitalplat.org</p>
     </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = document.getElementById('nav-links');
+
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+    </script>
 </body>
 </html>
