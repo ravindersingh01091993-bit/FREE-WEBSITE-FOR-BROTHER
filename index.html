@@ -78,9 +78,9 @@
             transition: 0.3s;
         }
 
-        /* Header Styles - Clean Design */
+        /* Header Styles - Clean Text Only (No Background) */
         .header {
-            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+            background: transparent;
             color: white;
             padding: 3rem 0 2rem 0;
             text-align: center;
@@ -90,6 +90,7 @@
             max-width: 400px;
             height: auto;
             margin-bottom: 1rem;
+            filter: brightness(0) invert(1); /* Makes logo white */
         }
 
         .tagline {
@@ -240,7 +241,7 @@
             font-size: 1.1rem;
         }
 
-        /* Unique Features */
+        /* Unique Features - Updated Warranty */
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -413,6 +414,34 @@
             100% { opacity: 1; }
         }
 
+        /* Products Preview Section */
+        .products-preview {
+            background: #1a1a1a;
+            padding: 3rem 2rem;
+            border-radius: 15px;
+            text-align: center;
+            margin: 3rem auto;
+            border: 2px solid #2c5cc3;
+        }
+
+        .view-products-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #2c5cc3, #1e3a8a);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-top: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .view-products-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(44, 92, 195, 0.4);
+        }
+
         /* Footer */
         .footer {
             background: #1a1a1a;
@@ -488,7 +517,7 @@
     </style>
 </head>
 <body>
-    <!-- Header with Logo Only -->
+    <!-- Header with Clean Text Only -->
     <header class="header">
         <img src="APM LOGO.png" alt="APM STORE NOIDA" class="header-logo">
         <p class="tagline">AFFORDABLE PRICE MOBILE</p>
@@ -504,7 +533,7 @@
             </div>
             <ul class="nav-links" id="nav-links">
                 <li><a href="#home" class="active">Home</a></li>
-                <li><a href="#products">Products</a></li>
+                <li><a href="products.html">Products</a></li>
                 <li><a href="#story">Our Story</a></li>
                 <li><a href="#features">Why APM</a></li>
                 <li><a href="#reviews">Reviews</a></li>
@@ -520,7 +549,7 @@
             <p>"Quality smartphones shouldn't cost a fortune. At APM Store, we bring you the latest technology at prices that make sense for everyone in Noida."</p>
         </div>
         
-        <div class="top-selling" id="products">
+        <div class="top-selling">
             <h2>🔥 Top Selling This Month</h2>
             <div class="top-phone">
                 <img src="samsung-galaxy-a25-1.jpg" alt="Samsung Galaxy A25" class="phone-image">
@@ -566,7 +595,7 @@
         </div>
     </section>
 
-    <!-- Section: Why Choose APM -->
+    <!-- Section: Why Choose APM - Updated Warranty -->
     <section class="section" id="features">
         <h2 class="section-title">Why Choose APM Store?</h2>
         <div class="features-grid">
@@ -577,14 +606,23 @@
             </div>
             <div class="feature-card">
                 <div class="feature-icon">🛡️</div>
-                <h3>2-Year Extended Warranty</h3>
-                <p>Free extended warranty on all smartphones - something no other store offers</p>
+                <h3>3-Month Extended Warranty</h3>
+                <p>Free 3-month extended warranty on all smartphones - extra peace of mind</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">🚀</div>
                 <h3>Same-Day Setup</h3>
                 <p>We set up your phone completely before you leave the store</p>
             </div>
+        </div>
+    </section>
+
+    <!-- Products Preview Section -->
+    <section class="section">
+        <div class="products-preview">
+            <h2 class="section-title">Explore Our Products</h2>
+            <p>Discover our wide range of smartphones from top brands at unbeatable prices</p>
+            <a href="products.html" class="view-products-btn">View All Products →</a>
         </div>
     </section>
 
@@ -618,7 +656,7 @@
                         <div class="review-stars">★★★★★</div>
                     </div>
                 </div>
-                <p>"The 2-year warranty gave me peace of mind. Staff helped me choose the perfect phone for my needs."</p>
+                <p>"The 3-month extended warranty is great! Staff helped me choose the perfect phone for my needs."</p>
             </div>
             
             <div class="review-card">
@@ -648,7 +686,7 @@
             </div>
             
             <div style="margin-top: 2rem; padding: 1rem; background: rgba(255,255,255,0.1); border-radius: 10px;">
-                <p>📍 <strong>Visit Us:</strong> APM Store, Noida | 📞 <strong>Call:</strong> 8512005792</p>
+                <p>📍 <strong>Visit Us:</strong> APM Store, Noida | 📞 <strong>Call:</strong> [Your Number]</p>
             </div>
         </div>
     </section>
@@ -691,4 +729,3 @@
     </script>
 </body>
 </html>
-
