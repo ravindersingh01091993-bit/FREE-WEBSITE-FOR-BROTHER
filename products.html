@@ -168,345 +168,182 @@
         /* Compact Product Grid */
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 0;
+            margin: 0 auto;
+            width: 100%;
+            max-width: 1200px;
+            padding: 0;
+            border: 1px solid #2a2a2a;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        @media (max-width: 1200px) {
+            .products-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        @media (max-width: 900px) {
+            .products-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         .product-card {
             background: #1a1a1a;
-            border-radius: 10px;
-            padding: 1rem;
+            padding: 15px 10px;
             text-align: center;
-            transition: transform 0.3s ease;
-            border: 1px solid #333;
-            height: 350px;
+            transition: all 0.2s ease;
+            border-right: 1px solid #2a2a2a;
+            border-bottom: 1px solid #2a2a2a;
+            height: 320px;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            margin: 0;
+            box-sizing: border-box;
+            position: relative;
+            width: 100%;
+        }
+        
+        .products-grid .product-card:nth-child(5n) {
+            border-right: none;
+        }
+        
+        @media (max-width: 1200px) {
+            .products-grid .product-card:nth-child(5n) {
+                border-right: 1px solid #2a2a2a;
+            }
+            .products-grid .product-card:nth-child(4n) {
+                border-right: none;
+            }
+        }
+        
+        @media (max-width: 900px) {
+            .products-grid .product-card:nth-child(4n) {
+                border-right: 1px solid #2a2a2a;
+            }
+            .products-grid .product-card:nth-child(3n) {
+                border-right: none;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .products-grid .product-card:nth-child(3n) {
+                border-right: 1px solid #2a2a2a;
+            }
+            .products-grid .product-card:nth-child(2n) {
+                border-right: none;
+            }
         }
 
         .product-card:hover {
-            transform: translateY(-5px);
-            border-color: #2c5cc3;
+            background: #222;
+            z-index: 1;
+            position: relative;
         }
 
         .product-image {
-            width: 120px;
-            height: 120px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin: 0 auto 0.8rem;
-            border: 2px solid #2c5cc3;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-
-        .product-image:hover {
-            transform: scale(1.05);
+            width: 100%;
+            height: 110px;
+            object-fit: contain;
+            margin: 0 auto 10px;
+            background: #2d2d2d;
+            padding: 10px;
+            display: block;
+            max-width: 100%;
         }
 
         .product-name {
             color: #2c5cc3;
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-            font-weight: bold;
+            margin: 5px 0;
+            font-size: 0.95rem;
+            font-weight: 600;
+            line-height: 1.3;
+            min-height: 40px;
+            max-height: 40px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            padding: 0 5px;
         }
 
         .product-price {
             color: #ff6b6b;
-            font-size: 1.1rem;
             font-weight: bold;
-            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+            margin: 5px 0 10px;
+        }
+
+        /* Category Titles */
+        .category-title {
+            text-align: center;
+            font-size: 2rem;
+            color: #2c5cc3;
+            margin: 3rem 0 1.5rem 0;
+            padding: 1rem;
+            background: linear-gradient(90deg, transparent, #1a1a1a, transparent);
+            position: relative;
+        }
+
+        .category-title::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #2c5cc3, transparent);
+            z-index: -1;
         }
 
         .product-features {
             list-style: none;
-            margin-bottom: 1rem;
-            text-align: left;
+            padding: 0;
+            margin: 5px 0 10px;
+            color: #aaa;
             font-size: 0.8rem;
+            flex-grow: 1;
+            min-height: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .product-features li {
-            padding: 0.2rem 0;
-            color: #cccccc;
-        }
-
-        .product-features li:before {
-            content: "✓ ";
-            color: #2c5cc3;
-            font-weight: bold;
-        }
-
-        .product-actions {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .details-btn {
-            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
-            color: white;
-            border: none;
-            padding: 0.6rem 1rem;
-            border-radius: 20px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-            width: 100%;
-            font-size: 0.9rem;
-            flex: 1;
-        }
-
-        .details-btn:hover {
-            transform: translateY(-2px);
+            margin-bottom: 0.3rem;
         }
 
         .buy-btn {
             background: linear-gradient(135deg, #2c5cc3, #1e3a8a);
             color: white;
             border: none;
-            padding: 0.6rem 1rem;
-            border-radius: 20px;
+            padding: 0.5rem;
+            border-radius: 4px;
             font-weight: bold;
             cursor: pointer;
-            transition: transform 0.3s ease;
-            width: 100%;
-            font-size: 0.9rem;
-            flex: 1;
+            font-size: 0.85rem;
+            transition: all 0.2s ease;
+            width: calc(100% - 20px);
+            margin: 0 auto;
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            right: 10px;
+            box-sizing: border-box;
         }
 
         .buy-btn:hover {
             transform: translateY(-2px);
-        }
-
-        .category-title {
-            color: #ff6b6b;
-            font-size: 1.8rem;
-            margin: 3rem 0 1.5rem 0;
-            text-align: center;
-            border-bottom: 2px solid #ff6b6b;
-            padding-bottom: 0.5rem;
-        }
-
-        .no-results {
-            text-align: center;
-            color: #ff6b6b;
-            font-size: 1.2rem;
-            margin: 2rem 0;
-            display: none;
-        }
-
-        /* Phone Details Modal */
-        .phone-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.9);
-            z-index: 1001;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
-        }
-
-        .phone-modal-content {
-            background: #1a1a1a;
-            padding: 2rem;
-            border-radius: 15px;
-            max-width: 900px;
-            width: 95%;
-            max-height: 90vh;
-            overflow-y: auto;
-            border: 3px solid #2c5cc3;
-            position: relative;
-        }
-
-        .phone-modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-            border-bottom: 2px solid #2c5cc3;
-            padding-bottom: 1rem;
-        }
-
-        .close-phone-modal {
-            background: none;
-            border: none;
-            color: #ff6b6b;
-            font-size: 2rem;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-
-        .phone-details-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-        }
-
-        .phone-image-large {
-            width: 100%;
-            max-width: 400px;
-            border-radius: 10px;
-            border: 3px solid #2c5cc3;
-        }
-
-        .phone-specs {
-            background: #2d2d2d;
-            padding: 1.5rem;
-            border-radius: 10px;
-            margin-top: 1rem;
-        }
-
-        .specs-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .spec-item {
-            padding: 0.5rem;
-            border-bottom: 1px solid #333;
-        }
-
-        .spec-label {
-            color: #2c5cc3;
-            font-weight: bold;
-            font-size: 0.9rem;
-        }
-
-        .spec-value {
-            color: #ffffff;
-            font-size: 0.9rem;
-        }
-
-        .delivery-info {
-            background: linear-gradient(135deg, #2c5cc3, #1e3a8a);
-            padding: 1.5rem;
-            border-radius: 10px;
-            margin-top: 1rem;
-            text-align: center;
-        }
-
-        .delivery-info h3 {
-            color: #ffffff;
-            margin-bottom: 1rem;
-        }
-
-        .delivery-features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .delivery-feature {
-            text-align: center;
-            padding: 1rem;
-            background: rgba(255,255,255,0.1);
-            border-radius: 8px;
-        }
-
-        /* Payment Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal-content {
-            background: #1a1a1a;
-            padding: 2rem;
-            border-radius: 15px;
-            max-width: 500px;
-            width: 90%;
-            border: 2px solid #2c5cc3;
-        }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .close-modal {
-            background: none;
-            border: none;
-            color: #ff6b6b;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        .payment-options {
-            display: grid;
-            gap: 1rem;
-            margin: 1.5rem 0;
-        }
-
-        .payment-option {
-            background: #2d2d2d;
-            padding: 1rem;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: background 0.3s ease;
-            border: 1px solid #333;
-        }
-
-        .payment-option:hover {
-            background: #3d3d3d;
-            border-color: #2c5cc3;
-        }
-
-        .payment-option.selected {
-            background: #2c5cc3;
-            border-color: #2c5cc3;
-        }
-
-        .confirm-payment {
-            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
-            color: white;
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 25px;
-            font-weight: bold;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 1rem;
-            transition: transform 0.3s ease;
-        }
-
-        .confirm-payment:hover {
-            transform: translateY(-2px);
-        }
-
-        /* Footer */
-        .footer {
-            background: #1a1a1a;
-            color: white;
-            text-align: center;
-            padding: 2rem;
-            margin-top: 4rem;
-            border-top: 3px solid #2c5cc3;
-        }
-
-        .back-home {
-            display: inline-block;
-            color: #2c5cc3;
-            text-decoration: none;
-            margin-top: 1rem;
-            font-weight: bold;
         }
 
         /* Responsive */
@@ -516,57 +353,12 @@
                 font-size: 0.9rem;
             }
             
-            .section-title {
+            .logo-text {
                 font-size: 2rem;
             }
 
             .products-grid {
                 grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            }
-
-            .product-card {
-                height: 320px;
-                padding: 0.8rem;
-            }
-
-            .product-image {
-                width: 100px;
-                height: 100px;
-            }
-
-            .product-name {
-                font-size: 0.9rem;
-            }
-
-            .logo-text {
-                font-size: 2rem;
-            }
-
-            .search-box {
-                flex-direction: column;
-            }
-
-            .search-btn {
-                position: relative;
-                margin-top: 1rem;
-                border-radius: 25px;
-                width: 100%;
-            }
-
-            .phone-details-container {
-                grid-template-columns: 1fr;
-            }
-
-            .phone-modal-content {
-                padding: 1rem;
-            }
-
-            .specs-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .product-actions {
-                flex-direction: column;
             }
         }
     </style>
@@ -586,37 +378,587 @@
         </div>
     </nav>
 
-    <!-- Header - No Phone Number -->
+    <!-- Header -->
     <header class="header">
         <h1 class="logo-text">APM STORE NOIDA</h1>
     </header>
 
-    <!-- Search Section - Improved -->
+    <!-- Search Section -->
     <section class="search-section">
         <div class="search-container">
-            <h2 style="color: #2c5cc3; margin-bottom: 1rem;">Find Your Perfect Phone</h2>
+            <h2 style="color: #ff6b6b; margin-bottom: 1rem;">🔍 Search Products</h2>
             <div class="search-box">
-                <input type="text" class="search-input" placeholder="Search Samsung, iPhone, Redmi, Realme, etc..." id="searchInput">
-                <button class="search-btn" onclick="searchProducts()">Search</button>
+                <input type="text" id="searchInput" class="search-input" placeholder="Search for phones, brands, features..." onkeyup="searchProducts()">
+                <button class="search-btn">Search</button>
             </div>
-            <div class="search-results" id="searchResults">Type to search 50+ mobile models</div>
+            <div class="search-results" id="searchResults"></div>
+            <div id="noResults" style="display: none; color: #ff6b6b; margin-top: 1rem;">
+                No products found. Try different keywords like "Samsung", "iPhone", "Budget", etc.
+            </div>
         </div>
     </section>
 
-    <!-- Our Premium Mobile Collection Section -->
+    <!-- Products Section -->
     <section class="section">
-        <h1 class="section-title">Our Premium Mobile Collection</h1>
-
-        <!-- No Results Message -->
-        <div class="no-results" id="noResults">
-            No products found. Try different keywords like "Samsung", "iPhone", "Budget", etc.
-        </div>
-
-        <h2 class="category-title">Samsung Series (15 Models)</h2>
-        <div class="products-grid" id="samsungProducts">
-            <!-- Samsung Phones - 15 Models -->
+        <h2 class="section-title">📱 Our Mobile Collection</h2>
+        
+        <!-- Under 5K -->
+        <h2 class="category-title">Under ₹5,000</h2>
+        <div class="products-grid" id="under5k">
+            <!-- Phones under 5K -->
             <div class="product-card">
-                <img src="samsung-galaxy-a25-1.jpg" alt="Samsung Galaxy A25" class="product-image" onclick="openPhoneDetails('samsung-a25')">
+                <a href="phone-details.html?id=tecno-spark-10">
+                    <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;">
+                        Tecno Spark 10
+                    </div>
+                </a>
+                <h3 class="product-name">Tecno Spark 10</h3>
+                <div class="product-price">₹9,999</div>
+                <ul class="product-features">
+                    <li>6.6" IPS LCD</li>
+                    <li>128GB Storage</li>
+                    <li>50MP Camera</li>
+                </ul>
+                <button class="buy-btn" onclick="buyProduct('Tecno Spark 10', 9999)">Buy Now</button>
+            </div>
+            
+            <div class="product-card">
+                <a href="phone-details.html?id=redmi-12c">
+                    <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;">
+                        Redmi 12C
+                    </div>
+                </a>
+                <h3 class="product-name">Redmi 12C</h3>
+                <div class="product-price">₹9,999</div>
+                <ul class="product-features">
+                    <li>6.71" IPS LCD</li>
+                    <li>64GB Storage</li>
+                    <li>50MP Camera</li>
+                </ul>
+                <button class="buy-btn" onclick="buyProduct('Redmi 12C', 9999)">Buy Now</button>
+            </div>
+            
+            <div class="product-card">
+                <a href="phone-details.html?id=itel-p40-plus">
+                    <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;">
+                        Itel P40 Plus
+                    </div>
+                </a>
+                <h3 class="product-name">Itel P40 Plus</h3>
+                <div class="product-price">₹4,999</div>
+                <ul class="product-features">
+                    <li>6.6" HD+ Display</li>
+                    <li>64GB Storage</li>
+                    <li>8MP Camera</li>
+                </ul>
+                <button class="buy-btn" onclick="buyProduct('Itel P40 Plus', 4999)">Buy Now</button>
+            </div>
+            
+            <div class="product-card">
+                <a href="phone-details.html?id=itel-vision-2">
+                    <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;">
+                        Itel Vision 2
+                    </div>
+                </a>
+                <h3 class="product-name">Itel Vision 2</h3>
+                <div class="product-price">₹4,999</div>
+                <ul class="product-features">
+                    <li>6.6" HD+ Display</li>
+                    <li>32GB Storage</li>
+                    <li>13MP Camera</li>
+                </ul>
+                <button class="buy-btn" onclick="buyProduct('Itel Vision 2', 4999)">Buy Now</button>
+            </div>
+            
+            <div class="product-card">
+                <a href="phone-details.html?id=itel-a48">
+                    <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;">
+                        Itel A48
+                    </div>
+                </a>
+                <h3 class="product-name">Itel A48</h3>
+                <div class="product-price">₹4,499</div>
+                <ul class="product-features">
+                    <li>6.5" HD+ Display</li>
+                    <li>32GB Storage</li>
+                    <li>8MP Camera</li>
+                </ul>
+                <button class="buy-btn" onclick="buyProduct('Itel A48', 4499)">Buy Now</button>
+            </div>
+            
+            <div class="product-card">
+                <a href="phone-details.html?id=itel-p38-pro">
+                    <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;">
+                        Itel P38 Pro
+                    </div>
+                </a>
+                <h3 class="product-name">Itel P38 Pro</h3>
+                <div class="product-price">₹4,999</div>
+                <ul class="product-features">
+                    <li>6.6" HD+ Display</li>
+                    <li>64GB Storage</li>
+                    <li>13MP Camera</li>
+                </ul>
+                <button class="buy-btn" onclick="buyProduct('Itel P38 Pro', 4999)">Buy Now</button>
+            </div>
+            
+            <div class="product-card">
+                <a href="phone-details.html?id=itel-a05s">
+                    <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;">
+                        Itel A05s
+                    </div>
+                </a>
+                <h3 class="product-name">Itel A05s</h3>
+                <div class="product-price">₹4,299</div>
+                <ul class="product-features">
+                    <li>5.5" Display</li>
+                    <li>16GB Storage</li>
+                    <li>5MP Camera</li>
+                </ul>
+                <button class="buy-btn" onclick="buyProduct('Itel A05s', 4299)">Buy Now</button>
+            </div>
+            
+            <div class="product-card">
+                <a href="phone-details.html?id=itel-p40">
+                    <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;">
+                        Itel P40
+                    </div>
+                </a>
+                <h3 class="product-name">Itel P40</h3>
+                <div class="product-price">₹4,499</div>
+                <ul class="product-features">
+                    <li>6.6" HD+ Display</li>
+                    <li>32GB Storage</li>
+                    <li>8MP Camera</li>
+                </ul>
+                <button class="buy-btn" onclick="buyProduct('Itel P40', 4499)">Buy Now</button>
+            </div>
+            
+            <div class="product-card">
+                <a href="phone-details.html?id=itel-a23">
+                    <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;">
+                        Itel A23
+                    </div>
+                </a>
+                <h3 class="product-name">Itel A23</h3>
+                <div class="product-price">₹3,999</div>
+                <ul class="product-features">
+                    <li>5.5" Display</li>
+                    <li>16GB Storage</li>
+                    <li>5MP Camera</li>
+                </ul>
+                <button class="buy-btn" onclick="buyProduct('Itel A23', 3999)">Buy Now</button>
+            </div>
+            
+            <div class="product-card">
+                <a href="phone-details.html?id=itel-a48-plus">
+                    <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;">
+                        Itel A48 Plus
+                    </div>
+                </a>
+                <h3 class="product-name">Itel A48 Plus</h3>
+                <div class="product-price">₹4,699</div>
+                <ul class="product-features">
+                    <li>6.5" HD+ Display</li>
+                    <li>32GB Storage</li>
+                    <li>8MP Camera</li>
+                </ul>
+                <button class="buy-btn" onclick="buyProduct('Itel A48 Plus', 4699)">Buy Now</button>
+            </div>
+            
+            <div class="product-card">
+                <a href="phone-details.html?id=itel-p37">
+                    <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;">
+                        Itel P37
+                    </div>
+                </a>
+                <h3 class="product-name">Itel P37</h3>
+                <div class="product-price">₹4,199</div>
+                <ul class="product-features">
+                    <li>6.5" HD+ Display</li>
+                    <li>32GB Storage</li>
+                    <li>8MP Camera</li>
+                </ul>
+                <button class="buy-btn" onclick="buyProduct('Itel P37', 4199)">Buy Now</button>
+            </div>
+            
+            <div class="product-card">
+                <a href="phone-details.html?id=itel-a05">
+                    <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;">
+                        Itel A05
+                    </div>
+                </a>
+                <h3 class="product-name">Itel A05</h3>
+                <div class="product-price">₹3,799</div>
+                <ul class="product-features">
+                    <li>5.5" Display</li>
+                    <li>16GB Storage</li>
+                    <li>5MP Camera</li>
+                </ul>
+                <button class="buy-btn" onclick="buyProduct('Itel A05', 3799)">Buy Now</button>
+            </div>
+            
+            <div class="product-card">
+                <a href="phone-details.html?id=itel-a23-plus">
+                    <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;">
+                        Itel A23 Plus
+                    </div>
+                </a>
+                <h3 class="product-name">Itel A23 Plus</h3>
+                <div class="product-price">₹4,299</div>
+                <ul class="product-features">
+                    <li>5.5" Display</li>
+                    <li>16GB Storage</li>
+                    <li>5MP Camera</li>
+                </ul>
+                <button class="buy-btn" onclick="buyProduct('Itel A23 Plus', 4299)">Buy Now</button>
+            </div>
+            
+            <div class="product-card">
+                <a href="phone-details.html?id=itel-p36">
+                    <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;">
+                        Itel P36
+                    </div>
+                </a>
+                <h3 class="product-name">Itel P36</h3>
+                <div class="product-price">₹3,999</div>
+                <ul class="product-features">
+                    <li>6.1" Display</li>
+                    <li>16GB Storage</li>
+                    <li>8MP Camera</li>
+                </ul>
+                <button class="buy-btn" onclick="buyProduct('Itel P36', 3999)">Buy Now</button>
+            </div>
+            
+            <div class="product-card">
+                <a href="phone-details.html?id=itel-a47">
+                    <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;">
+                        Itel A47
+                    </div>
+                </a>
+                <h3 class="product-name">Itel A47</h3>
+                <div class="product-price">₹4,499</div>
+                <ul class="product-features">
+                    <li>6.1" Display</li>
+                    <li>32GB Storage</li>
+                    <li>8MP Camera</li>
+                </ul>
+                <button class="buy-btn" onclick="buyProduct('Itel A47', 4499)">Buy Now</button>
+            </div>
+            
+            <div class="product-card">
+                <a href="phone-details.html?id=itel-p38">
+                    <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;">
+                        Itel P38
+                    </div>
+                </a>
+                <h3 class="product-name">Itel P38</h3>
+                <div class="product-price">₹4,699</div>
+                <ul class="product-features">
+                    <li>6.6" HD+ Display</li>
+                    <li>32GB Storage</li>
+                    <li>13MP Camera</li>
+                </ul>
+                <button class="buy-btn" onclick="buyProduct('Itel P38', 4699)">Buy Now</button>
+            </div>
+            
+            <div class="product-card">
+                <a href="phone-details.html?id=itel-a06">
+                    <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;">
+                        Itel A06
+                    </div>
+                </a>
+                <h3 class="product-name">Itel A06</h3>
+                <div class="product-price">₹4,199</div>
+                <ul class="product-features">
+                    <li>5.5" Display</li>
+                    <li>32GB Storage</li>
+                    <li>8MP Camera</li>
+                </ul>
+                <button class="buy-btn" onclick="buyProduct('Itel A06', 4199)">Buy Now</button>
+            </div>
+            
+            <div class="product-card">
+                <a href="phone-details.html?id=itel-a24">
+                    <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;">
+                        Itel A24
+                    </div>
+                </a>
+                <h3 class="product-name">Itel A24</h3>
+                <div class="product-price">₹4,499</div>
+                <ul class="product-features">
+                    <li>5.5" Display</li>
+                    <li>32GB Storage</li>
+                    <li>8MP Camera</li>
+                </ul>
+                <button class="buy-btn" onclick="buyProduct('Itel A24', 4499)">Buy Now</button>
+            </div>
+            
+            <div class="product-card">
+                <a href="phone-details.html?id=itel-p35">
+                    <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;">
+                        Itel P35
+                    </div>
+                </a>
+                <h3 class="product-name">Itel P35</h3>
+                <div class="product-price">₹3,899</div>
+                <ul class="product-features">
+                    <li>6.1" Display</li>
+                    <li>16GB Storage</li>
+                    <li>8MP Camera</li>
+                </ul>
+                <button class="buy-btn" onclick="buyProduct('Itel P35', 3899)">Buy Now</button>
+            </div>
+            
+            <div class="product-card">
+                <a href="phone-details.html?id=itel-a46">
+                    <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;">
+                        Itel A46
+                    </div>
+                </a>
+                <h3 class="product-name">Itel A46</h3>
+                <div class="product-price">₹4,299</div>
+                <ul class="product-features">
+                    <li>6.1" Display</li>
+                    <li>32GB Storage</li>
+                    <li>8MP Camera</li>
+                </ul>
+                <button class="buy-btn" onclick="buyProduct('Itel A46', 4299)">Buy Now</button>
+            </div>
+            
+            <div class="product-card">
+                <a href="phone-details.html?id=itel-p39">
+                    <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;">
+                        Itel P39
+                    </div>
+                </a>
+                <h3 class="product-name">Itel P39</h3>
+                <div class="product-price">₹4,799</div>
+                <ul class="product-features">
+                    <li>6.6" HD+ Display</li>
+                    <li>32GB Storage</li>
+                    <li>8MP Camera</li>
+                </ul>
+                <button class="buy-btn" onclick="buyProduct('Itel P39', 4799)">Buy Now</button>
+            </div>
+            
+            <div class="product-card">
+                <a href="phone-details.html?id=itel-a07">
+                    <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;">
+                        Itel A07
+                    </div>
+                </a>
+                <h3 class="product-name">Itel A07</h3>
+                <div class="product-price">₹4,399</div>
+                <ul class="product-features">
+                    <li>5.5" Display</li>
+                    <li>32GB Storage</li>
+                    <li>8MP Camera</li>
+                </ul>
+                <button class="buy-btn" onclick="buyProduct('Itel A07', 4399)">Buy Now</button>
+            </div>
+            
+            <div class="product-card">
+                <a href="phone-details.html?id=itel-a49">
+                    <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;">
+                        Itel A49
+                    </div>
+                </a>
+                <h3 class="product-name">Itel A49</h3>
+                <div class="product-price">₹4,599</div>
+                <ul class="product-features">
+                    <li>6.5" HD+ Display</li>
+                    <li>32GB Storage</li>
+                    <li>8MP Camera</li>
+                </ul>
+                <button class="buy-btn" onclick="buyProduct('Itel A49', 4599)">Buy Now</button>
+            </div>
+            
+            <div class="product-card">
+                <a href="phone-details.html?id=itel-p41">
+                    <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;">
+                        Itel P41
+                    </div>
+                </a>
+                <h3 class="product-name">Itel P41</h3>
+                <div class="product-price">₹4,899</div>
+                <ul class="product-features">
+                    <li>6.6" HD+ Display</li>
+                    <li>64GB Storage</li>
+                    <li>13MP Camera</li>
+                </ul>
+                <button class="buy-btn" onclick="buyProduct('Itel P41', 4899)">Buy Now</button>
+            </div>
+        <!-- 5K to 15K -->
+        <h2 class="category-title">₹5,000 - ₹15,000</h2>
+        <div class="products-grid" id="fiveToFifteen">
+            <div class="product-card">
+                <a href="phone-details.html?id=samsung-a05s">
+                    <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;">
+                        Samsung A05s
+                    </div>
+                </a>
+                <h3 class="product-name">Samsung A05s</h3>
+                <div class="product-price">₹11,999</div>
+                <ul class="product-features">
+                    <li>6.7" PLS LCD</li>
+                    <li>64GB Storage</li>
+                    <li>50MP Camera</li>
+                </ul>
+                <button class="buy-btn" onclick="buyProduct('Samsung A05s', 11999)">Buy Now</button>
+            </div>
+            
+            <div class="product-card">
+                <a href="phone-details.html?id=redmi-12">
+                    <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;">
+                        Redmi 12
+                    </div>
+                </a>
+                <h3 class="product-name">Redmi 12</h3>
+                <div class="product-price">₹11,999</div>
+                <ul class="product-features">
+                    <li>6.71" IPS LCD</li>
+                    <li>128GB Storage</li>
+                    <li>50MP Camera</li>
+                </ul>
+                <button class="buy-btn" onclick="buyProduct('Redmi 12', 11999)">Buy Now</button>
+            </div>
+            
+            <div class="product-card">
+                <a href="phone-details.html?id=infinix-hot-30">
+                    <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;">
+                        Infinix Hot 30
+                    </div>
+                </a>
+                <h3 class="product-name">Infinix Hot 30</h3>
+                <div class="product-price">₹11,999</div>
+                <ul class="product-features">
+                    <li>6.6" IPS LCD</li>
+                    <li>128GB Storage</li>
+                    <li>50MP Camera</li>
+                </ul>
+                <button class="buy-btn" onclick="buyProduct('Infinix Hot 30', 11999)">Buy Now</button>
+            </div>
+            
+            <div class="product-card">
+                <a href="phone-details.html?id=realme-c55">
+                    <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;">
+                        Realme C55
+                    </div>
+                </a>
+                <h3 class="product-name">Realme C55</h3>
+                <div class="product-price">₹12,999</div>
+                <ul class="product-features">
+                    <li>6.72" IPS LCD</li>
+                    <li>128GB Storage</li>
+                    <li>64MP Camera</li>
+                </ul>
+                <button class="buy-btn" onclick="buyProduct('Realme C55', 12999)">Buy Now</button>
+            </div>
+            
+            <div class="product-card">
+                <a href="phone-details.html?id=tecno-pova-5">
+                    <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;">
+                        Tecno Pova 5
+                    </div>
+                </a>
+                <h3 class="product-name">Tecno Pova 5</h3>
+                <div class="product-price">₹13,999</div>
+                <ul class="product-features">
+                    <li>6.78" IPS LCD</li>
+                    <li>128GB Storage</li>
+                    <li>50MP Camera</li>
+                </ul>
+                <button class="buy-btn" onclick="buyProduct('Tecno Pova 5', 13999)">Buy Now</button>
+            </div>
+            
+            <div class="product-card">
+                <a href="phone-details.html?id=samsung-m15">
+                    <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;">
+                        Samsung M15
+                    </div>
+                </a>
+                <h3 class="product-name">Samsung M15</h3>
+                <div class="product-price">₹13,999</div>
+                <ul class="product-features">
+                    <li>6.5" Super AMOLED</li>
+                    <li>128GB Storage</li>
+                    <li>50MP Camera</li>
+                </ul>
+                <button class="buy-btn" onclick="buyProduct('Samsung M15', 13999)">Buy Now</button>
+            </div>
+            
+            <div class="product-card">
+                <a href="phone-details.html?id=motorola-g52">
+                    <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;">
+                        Motorola G52
+                    </div>
+                </a>
+                <h3 class="product-name">Motorola G52</h3>
+                <div class="product-price">₹13,999</div>
+                <ul class="product-features">
+                    <li>6.5" IPS LCD</li>
+                    <li>128GB Storage</li>
+                    <li>50MP Camera</li>
+                </ul>
+                <button class="buy-btn" onclick="buyProduct('Motorola G52', 13999)">Buy Now</button>
+            </div>
+            
+            <div class="product-card">
+                <a href="phone-details.html?id=redmi-10">
+                    <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;">
+                        Redmi 10
+                    </div>
+                </a>
+                <h3 class="product-name">Redmi 10</h3>
+                <div class="product-price">₹10,999</div>
+                <ul class="product-features">
+                    <li>6.5" FHD+ Display</li>
+                    <li>64GB Storage</li>
+                    <li>50MP Camera</li>
+                </ul>
+                <button class="buy-btn" onclick="buyProduct('Redmi 10', 10999)">Buy Now</button>
+            </div>
+            
+            <div class="product-card">
+                <a href="phone-details.html?id=realme-c51">
+                    <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;">
+                        Realme C51
+                    </div>
+                </a>
+                <h3 class="product-name">Realme C51</h3>
+                <div class="product-price">₹10,999</div>
+                <ul class="product-features">
+                    <li>6.6" HD+ Display</li>
+                    <li>64GB Storage</li>
+                    <li>50MP Camera</li>
+                </ul>
+                <button class="buy-btn" onclick="buyProduct('Realme C51', 10999)">Buy Now</button>
+            </div>
+            
+            <div class="product-card">
+                <a href="phone-details.html?id=infinix-hot-30i">
+                    <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;">
+                        Infinix Hot 30i
+                    </div>
+                </a>
+                <h3 class="product-name">Infinix Hot 30i</h3>
+                <div class="product-price">₹9,999</div>
+                <ul class="product-features">
+                    <li>6.6" HD+ Display</li>
+                    <li>64GB Storage</li>
+                    <li>50MP Camera</li>
+                </ul>
+                <button class="buy-btn" onclick="buyProduct('Infinix Hot 30i', 9999)">Buy Now</button>
+            </div>
+        <!-- 15K to 25K -->
+        <h2 class="category-title">₹15,000 - ₹25,000</h2>
+        <div class="products-grid" id="fifteenToTwentyFive">
+            <!-- Phones between 15K and 25K -->
+            <div class="product-card">
+                <a href="phone-details.html?id=samsung-a25">
+                    <img src="samsung-galaxy-a25-1.jpg" alt="Samsung Galaxy A25" class="product-image">
+                </a>
                 <h3 class="product-name">Samsung A25</h3>
                 <div class="product-price">₹18,999</div>
                 <ul class="product-features">
@@ -624,463 +966,362 @@
                     <li>128GB Storage</li>
                     <li>50MP Camera</li>
                 </ul>
-                <div class="product-actions">
-                    <button class="details-btn" onclick="openPhoneDetails('samsung-a25')">Details</button>
-                    <button class="buy-btn" onclick="openPayment('Samsung Galaxy A25', 18999)">Buy Now</button>
-                </div>
+                <button class="buy-btn" onclick="buyProduct('Samsung A25', 18999)">Buy Now</button>
             </div>
-
+            
             <div class="product-card">
-                <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;" onclick="openPhoneDetails('samsung-s23')">
-                    S23
-                </div>
-                <h3 class="product-name">Samsung S23</h3>
-                <div class="product-price">₹74,999</div>
+                <a href="phone-details.html?id=samsung-a35">
+                    <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;">
+                        Samsung A35
+                    </div>
+                </a>
+                <h3 class="product-name">Samsung A35</h3>
+                <div class="product-price">₹22,999</div>
                 <ul class="product-features">
-                    <li>6.1" Dynamic AMOLED</li>
-                    <li>256GB Storage</li>
-                    <li>50MP Camera</li>
-                </ul>
-                <div class="product-actions">
-                    <button class="details-btn" onclick="openPhoneDetails('samsung-s23')">Details</button>
-                    <button class="buy-btn" onclick="openPayment('Samsung S23', 74999)">Buy Now</button>
-                </div>
-            </div>
-
-            <!-- Additional Samsung Models -->
-            <div class="product-card">
-                <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;" onclick="openPhoneDetails('samsung-s23-ultra')">
-                    S23 Ultra
-                </div>
-                <h3 class="product-name">Samsung S23 Ultra</h3>
-                <div class="product-price">₹1,24,999</div>
-                <ul class="product-features">
-                    <li>6.8" Dynamic AMOLED</li>
-                    <li>512GB Storage</li>
-                    <li>200MP Camera</li>
-                </ul>
-                <div class="product-actions">
-                    <button class="details-btn" onclick="openPhoneDetails('samsung-s23-ultra')">Details</button>
-                    <button class="buy-btn" onclick="openPayment('Samsung S23 Ultra', 124999)">Buy Now</button>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;" onclick="openPhoneDetails('samsung-z-flip5')">
-                    Z Flip 5
-                </div>
-                <h3 class="product-name">Samsung Z Flip 5</h3>
-                <div class="product-price">₹89,999</div>
-                <ul class="product-features">
-                    <li>Foldable 6.7"</li>
-                    <li>256GB Storage</li>
-                    <li>12MP+12MP Cam</li>
-                </ul>
-                <div class="product-actions">
-                    <button class="details-btn" onclick="openPhoneDetails('samsung-z-flip5')">Details</button>
-                    <button class="buy-btn" onclick="openPayment('Samsung Z Flip 5', 89999)">Buy Now</button>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;" onclick="openPhoneDetails('samsung-a54')">
-                    A54
-                </div>
-                <h3 class="product-name">Samsung A54</h3>
-                <div class="product-price">₹32,999</div>
-                <ul class="product-features">
-                    <li>6.4" Super AMOLED</li>
-                    <li>128GB Storage</li>
-                    <li>64MP Camera</li>
-                </ul>
-                <div class="product-actions">
-                    <button class="details-btn" onclick="openPhoneDetails('samsung-a54')">Details</button>
-                    <button class="buy-btn" onclick="openPayment('Samsung A54', 32999)">Buy Now</button>
-                </div>
-            </div>
-
-            <!-- 10 more Samsung models... -->
-            <div class="product-card">
-                <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;" onclick="openPhoneDetails('samsung-m34')">
-                    M34
-                </div>
-                <h3 class="product-name">Samsung M34</h3>
-                <div class="product-price">₹16,999</div>
-                <ul class="product-features">
-                    <li>6.5" sAMOLED</li>
+                    <li>6.6" FHD+ Display</li>
                     <li>128GB Storage</li>
                     <li>50MP Camera</li>
                 </ul>
-                <div class="product-actions">
-                    <button class="details-btn" onclick="openPhoneDetails('samsung-m34')">Details</button>
-                    <button class="buy-btn" onclick="openPayment('Samsung M34', 16999)">Buy Now</button>
-                </div>
+                <button class="buy-btn" onclick="buyProduct('Samsung A35', 22999)">Buy Now</button>
             </div>
-
+            
             <div class="product-card">
-                <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;" onclick="openPhoneDetails('samsung-f54')">
-                    F54
-                </div>
-                <h3 class="product-name">Samsung F54</h3>
-                <div class="product-price">₹27,999</div>
+                <a href="phone-details.html?id=samsung-a55">
+                    <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;">
+                        Samsung A55
+                    </div>
+                </a>
+                <h3 class="product-name">Samsung A55</h3>
+                <div class="product-price">₹24,999</div>
                 <ul class="product-features">
-                    <li>6.7" Super AMOLED</li>
-                    <li>256GB Storage</li>
-                    <li>108MP Camera</li>
-                </ul>
-                <div class="product-actions">
-                    <button class="details-btn" onclick="openPhoneDetails('samsung-f54')">Details</button>
-                    <button class="buy-btn" onclick="openPayment('Samsung F54', 27999)">Buy Now</button>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;" onclick="openPhoneDetails('samsung-a15')">
-                    A15
-                </div>
-                <h3 class="product-name">Samsung A15</h3>
-                <div class="product-price">₹14,999</div>
-                <ul class="product-features">
-                    <li>6.5" AMOLED</li>
+                    <li>6.6" FHD+ Display</li>
                     <li>128GB Storage</li>
                     <li>50MP Camera</li>
                 </ul>
-                <div class="product-actions">
-                    <button class="details-btn" onclick="openPhoneDetails('samsung-a15')">Details</button>
-                    <button class="buy-btn" onclick="openPayment('Samsung A15', 14999)">Buy Now</button>
-                </div>
+                <button class="buy-btn" onclick="buyProduct('Samsung A55', 24999)">Buy Now</button>
             </div>
-
+            
             <div class="product-card">
-                <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;" onclick="openPhoneDetails('samsung-a34')">
-                    A34
-                </div>
-                <h3 class="product-name">Samsung A34</h3>
-                <div class="product-price">₹29,999</div>
-                <ul class="product-features">
-                    <li>6.6" Super AMOLED</li>
-                    <li>128GB Storage</li>
-                    <li>48MP Camera</li>
-                </ul>
-                <div class="product-actions">
-                    <button class="details-btn" onclick="openPhoneDetails('samsung-a34')">Details</button>
-                    <button class="buy-btn" onclick="openPayment('Samsung A34', 29999)">Buy Now</button>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;" onclick="openPhoneDetails('samsung-s21-fe')">
-                    S21 FE
-                </div>
-                <h3 class="product-name">Samsung S21 FE</h3>
-                <div class="product-price">₹39,999</div>
-                <ul class="product-features">
-                    <li>6.4" Dynamic AMOLED</li>
-                    <li>256GB Storage</li>
-                    <li>12MP Triple Cam</li>
-                </ul>
-                <div class="product-actions">
-                    <button class="details-btn" onclick="openPhoneDetails('samsung-s21-fe')">Details</button>
-                    <button class="buy-btn" onclick="openPayment('Samsung S21 FE', 39999)">Buy Now</button>
-                </div>
-            </div>
-
-            <!-- 5 more Samsung models -->
-            <div class="product-card">
-                <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;" onclick="openPhoneDetails('samsung-z-fold5')">
-                    Z Fold 5
-                </div>
-                <h3 class="product-name">Samsung Z Fold 5</h3>
-                <div class="product-price">₹1,54,999</div>
-                <ul class="product-features">
-                    <li>Foldable 7.6"</li>
-                    <li>512GB Storage</li>
-                    <li>50MP Triple Cam</li>
-                </ul>
-                <div class="product-actions">
-                    <button class="details-btn" onclick="openPhoneDetails('samsung-z-fold5')">Details</button>
-                    <button class="buy-btn" onclick="openPayment('Samsung Z Fold 5', 154999)">Buy Now</button>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;" onclick="openPhoneDetails('samsung-a05')">
-                    A05
-                </div>
-                <h3 class="product-name">Samsung A05</h3>
-                <div class="product-price">₹9,999</div>
-                <ul class="product-features">
-                    <li>6.7" PLS LCD</li>
-                    <li>64GB Storage</li>
-                    <li>50MP Camera</li>
-                </ul>
-                <div class="product-actions">
-                    <button class="details-btn" onclick="openPhoneDetails('samsung-a05')">Details</button>
-                    <button class="buy-btn" onclick="openPayment('Samsung A05', 9999)">Buy Now</button>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;" onclick="openPhoneDetails('samsung-m14')">
-                    M14
-                </div>
-                <h3 class="product-name">Samsung M14</h3>
-                <div class="product-price">₹12,499</div>
-                <ul class="product-features">
-                    <li>6.6" PLS LCD</li>
-                    <li>128GB Storage</li>
-                    <li>50MP Camera</li>
-                </ul>
-                <div class="product-actions">
-                    <button class="details-btn" onclick="openPhoneDetails('samsung-m14')">Details</button>
-                    <button class="buy-btn" onclick="openPayment('Samsung M14', 12499)">Buy Now</button>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;" onclick="openPhoneDetails('samsung-f14')">
-                    F14
-                </div>
-                <h3 class="product-name">Samsung F14</h3>
-                <div class="product-price">₹11,999</div>
-                <ul class="product-features">
-                    <li>6.6" PLS LCD</li>
-                    <li>64GB Storage</li>
-                    <li>50MP Camera</li>
-                </ul>
-                <div class="product-actions">
-                    <button class="details-btn" onclick="openPhoneDetails('samsung-f14')">Details</button>
-                    <button class="buy-btn" onclick="openPayment('Samsung F14', 11999)">Buy Now</button>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;" onclick="openPhoneDetails('samsung-s22')">
-                    S22
-                </div>
-                <h3 class="product-name">Samsung S22</h3>
-                <div class="product-price">₹54,999</div>
-                <ul class="product-features">
-                    <li>6.1" Dynamic AMOLED</li>
-                    <li>128GB Storage</li>
-                    <li>50MP Camera</li>
-                </ul>
-                <div class="product-actions">
-                    <button class="details-btn" onclick="openPhoneDetails('samsung-s22')">Details</button>
-                    <button class="buy-btn" onclick="openPayment('Samsung S22', 54999)">Buy Now</button>
-                </div>
-            </div>
-        </div>
-
-        <h2 class="category-title">Apple iPhones (15 Models)</h2>
-        <div class="products-grid" id="appleProducts">
-            <!-- Apple Phones - 15 Models -->
-            <div class="product-card">
-                <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;" onclick="openPhoneDetails('iphone-15')">
-                    iPhone 15
-                </div>
-                <h3 class="product-name">iPhone 15</h3>
-                <div class="product-price">₹79,900</div>
-                <ul class="product-features">
-                    <li>6.1" Super Retina</li>
-                    <li>128GB Storage</li>
-                    <li>48MP Camera</li>
-                </ul>
-                <div class="product-actions">
-                    <button class="details-btn" onclick="openPhoneDetails('iphone-15')">Details</button>
-                    <button class="buy-btn" onclick="openPayment('iPhone 15', 79900)">Buy Now</button>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;" onclick="openPhoneDetails('iphone-15-plus')">
-                    iPhone 15 Plus
-                </div>
-                <h3 class="product-name">iPhone 15 Plus</h3>
-                <div class="product-price">₹89,900</div>
-                <ul class="product-features">
-                    <li>6.7" Super Retina</li>
-                    <li>128GB Storage</li>
-                    <li>48MP Camera</li>
-                </ul>
-                <div class="product-actions">
-                    <button class="details-btn" onclick="openPhoneDetails('iphone-15-plus')">Details</button>
-                    <button class="buy-btn" onclick="openPayment('iPhone 15 Plus', 89900)">Buy Now</button>
-                </div>
-            </div>
-
-            <!-- Additional Apple Models -->
-            <div class="product-card">
-                <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;" onclick="openPhoneDetails('iphone-15-pro')">
-                    iPhone 15 Pro
-                </div>
-                <h3 class="product-name">iPhone 15 Pro</h3>
-                <div class="product-price">₹1,34,900</div>
-                <ul class="product-features">
-                    <li>6.1" ProMotion</li>
-                    <li>128GB Storage</li>
-                    <li>48MP Pro Camera</li>
-                </ul>
-                <div class="product-actions">
-                    <button class="details-btn" onclick="openPhoneDetails('iphone-15-pro')">Details</button>
-                    <button class="buy-btn" onclick="openPayment('iPhone 15 Pro', 134900)">Buy Now</button>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;" onclick="openPhoneDetails('iphone-15-pro-max')">
-                    iPhone 15 Pro Max
-                </div>
-                <h3 class="product-name">iPhone 15 Pro Max</h3>
-                <div class="product-price">₹1,59,900</div>
-                <ul class="product-features">
-                    <li>6.7" ProMotion</li>
-                    <li>256GB Storage</li>
-                    <li>48MP Pro Camera</li>
-                </ul>
-                <div class="product-actions">
-                    <button class="details-btn" onclick="openPhoneDetails('iphone-15-pro-max')">Details</button>
-                    <button class="buy-btn" onclick="openPayment('iPhone 15 Pro Max', 159900)">Buy Now</button>
-                </div>
-            </div>
-
-            <!-- 11 more Apple models... -->
-            <!-- ... (similar structure for remaining Apple models) ... -->
-        </div>
-
-        <h2 class="category-title">Budget Friendly (20 Models)</h2>
-        <div class="products-grid" id="budgetProducts">
-            <!-- Budget Phones - 20 Models -->
-            <div class="product-card">
-                <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;" onclick="openPhoneDetails('redmi-note13')">
-                    Redmi Note 13
-                </div>
+                <a href="phone-details.html?id=redmi-note-13">
+                    <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;">
+                        Redmi Note 13
+                    </div>
+                </a>
                 <h3 class="product-name">Redmi Note 13</h3>
-                <div class="product-price">₹16,999</div>
+                <div class="product-price">₹21,999</div>
                 <ul class="product-features">
-                    <li>6.67" AMOLED</li>
+                    <li>6.67" FHD+ Display</li>
                     <li>128GB Storage</li>
-                    <li>108MP Camera</li>
+                    <li>50MP Camera</li>
                 </ul>
-                <div class="product-actions">
-                    <button class="details-btn" onclick="openPhoneDetails('redmi-note13')">Details</button>
-                    <button class="buy-btn" onclick="openPayment('Redmi Note 13', 16999)">Buy Now</button>
-                </div>
+                <button class="buy-btn" onclick="buyProduct('Redmi Note 13', 21999)">Buy Now</button>
             </div>
-
+            
             <div class="product-card">
-                <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;" onclick="openPhoneDetails('realme-11-pro')">
-                    Realme 11 Pro
-                </div>
-                <h3 class="product-name">Realme 11 Pro</h3>
+                <a href="phone-details.html?id=redmi-note-13-pro">
+                    <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;">
+                        Redmi Note 13 Pro
+                    </div>
+                </a>
+                <h3 class="product-name">Redmi Note 13 Pro</h3>
                 <div class="product-price">₹23,999</div>
                 <ul class="product-features">
-                    <li>6.7" Curved Display</li>
-                    <li>256GB Storage</li>
-                    <li>100MP Camera</li>
+                    <li>6.67" FHD+ Display</li>
+                    <li>128GB Storage</li>
+                    <li>200MP Camera</li>
                 </ul>
-                <div class="product-actions">
-                    <button class="details-btn" onclick="openPhoneDetails('realme-11-pro')">Details</button>
-                    <button class="buy-btn" onclick="openPayment('Realme 11 Pro', 23999)">Buy Now</button>
-                </div>
+                <button class="buy-btn" onclick="buyProduct('Redmi Note 13 Pro', 23999)">Buy Now</button>
             </div>
-
-            <!-- 18 more Budget models... -->
-            <!-- ... (similar structure for remaining Budget models) ... -->
+            
+            <div class="product-card">
+                <a href="phone-details.html?id=realme-12-pro">
+                    <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;">
+                        Realme 12 Pro
+                    </div>
+                </a>
+                <h3 class="product-name">Realme 12 Pro</h3>
+                <div class="product-price">₹22,999</div>
+                <ul class="product-features">
+                    <li>6.7" FHD+ Display</li>
+                    <li>128GB Storage</li>
+                    <li>50MP Camera</li>
+                </ul>
+                <button class="buy-btn" onclick="buyProduct('Realme 12 Pro', 22999)">Buy Now</button>
+            </div>
+            
+            <div class="product-card">
+                <a href="phone-details.html?id=realme-12-pro-plus">
+                    <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;">
+                        Realme 12 Pro+
+                    </div>
+                </a>
+                <h3 class="product-name">Realme 12 Pro+</h3>
+                <div class="product-price">₹24,999</div>
+                <ul class="product-features">
+                    <li>6.7" FHD+ Display</li>
+                    <li>256GB Storage</li>
+                    <li>50MP Camera</li>
+                </ul>
+                <button class="buy-btn" onclick="buyProduct('Realme 12 Pro+', 24999)">Buy Now</button>
+            </div>
+            
+            <div class="product-card">
+                <a href="phone-details.html?id=infinix-note-30-pro">
+                    <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;">
+                        Infinix Note 30 Pro
+                    </div>
+                </a>
+                <h3 class="product-name">Infinix Note 30 Pro</h3>
+                <div class="product-price">₹21,999</div>
+                <ul class="product-features">
+                    <li>6.78" FHD+ Display</li>
+                    <li>128GB Storage</li>
+                    <li>108MP Camera</li>
+                </ul>
+                <button class="buy-btn" onclick="buyProduct('Infinix Note 30 Pro', 21999)">Buy Now</button>
+            </div>
+            
+            <div class="product-card">
+                <a href="phone-details.html?id=infinix-note-30-vip">
+                    <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;">
+                        Infinix Note 30 VIP
+                    </div>
+                </a>
+                <h3 class="product-name">Infinix Note 30 VIP</h3>
+                <div class="product-price">₹23,999</div>
+                <ul class="product-features">
+                    <li>6.78" FHD+ Display</li>
+                    <li>256GB Storage</li>
+                    <li>108MP Camera</li>
+                </ul>
+                <button class="buy-btn" onclick="buyProduct('Infinix Note 30 VIP', 23999)">Buy Now</button>
+            </div>
+            
+            <div class="product-card">
+                <a href="phone-details.html?id=tecno-camon-20">
+                    <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;">
+                        Tecno Camon 20
+                    </div>
+                </a>
+                <h3 class="product-name">Tecno Camon 20</h3>
+                <div class="product-price">₹20,999</div>
+                <ul class="product-features">
+                    <li>6.67" FHD+ Display</li>
+                    <li>128GB Storage</li>
+                    <li>50MP Camera</li>
+                </ul>
+                <button class="buy-btn" onclick="buyProduct('Tecno Camon 20', 20999)">Buy Now</button>
+            </div>
+            
+            <div class="product-card">
+                <a href="phone-details.html?id=tecno-camon-20-pro">
+                    <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;">
+                        Tecno Camon 20 Pro
+                    </div>
+                </a>
+                <h3 class="product-name">Tecno Camon 20 Pro</h3>
+                <div class="product-price">₹22,999</div>
+                <ul class="product-features">
+                    <li>6.67" FHD+ Display</li>
+                    <li>256GB Storage</li>
+                    <li>50MP Camera</li>
+                </ul>
+                <button class="buy-btn" onclick="buyProduct('Tecno Camon 20 Pro', 22999)">Buy Now</button>
+            </div>
+            
+            <div class="product-card">
+                <a href="phone-details.html?id=motorola-g54">
+                    <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;">
+                        Motorola G54
+                    </div>
+                </a>
+                <h3 class="product-name">Motorola G54</h3>
+                <div class="product-price">₹21,999</div>
+                <ul class="product-features">
+                    <li>6.5" FHD+ Display</li>
+                    <li>128GB Storage</li>
+                    <li>50MP Camera</li>
+                </ul>
+                <button class="buy-btn" onclick="buyProduct('Motorola G54', 21999)">Buy Now</button>
+            </div>
+            
+            <div class="product-card">
+                <a href="phone-details.html?id=motorola-g54-5g">
+                    <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;">
+                        Motorola G54 5G
+                    </div>
+                </a>
+                <h3 class="product-name">Motorola G54 5G</h3>
+                <div class="product-price">₹23,999</div>
+                <ul class="product-features">
+                    <li>6.5" FHD+ Display</li>
+                    <li>256GB Storage</li>
+                    <li>50MP Camera</li>
+                </ul>
+                <button class="buy-btn" onclick="buyProduct('Motorola G54 5G', 23999)">Buy Now</button>
+            </div>
+            
+            <div class="product-card">
+                <a href="phone-details.html?id=oneplus-nord-ce4">
+                    <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;">
+                        OnePlus Nord CE4
+                    </div>
+                </a>
+                <h3 class="product-name">OnePlus Nord CE4</h3>
+                <div class="product-price">₹24,999</div>
+                <ul class="product-features">
+                    <li>6.7" FHD+ Display</li>
+                    <li>128GB Storage</li>
+                    <li>50MP Camera</li>
+                </ul>
+                <button class="buy-btn" onclick="buyProduct('OnePlus Nord CE4', 24999)">Buy Now</button>
+            </div>
+            
+            <div class="product-card">
+                <a href="phone-details.html?id=oneplus-nord-ce4-lite">
+                    <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;">
+                        OnePlus Nord CE4 Lite
+                    </div>
+                </a>
+                <h3 class="product-name">OnePlus Nord CE4 Lite</h3>
+                <div class="product-price">₹22,999</div>
+                <ul class="product-features">
+                    <li>6.72" FHD+ Display</li>
+                    <li>128GB Storage</li>
+                    <li>50MP Camera</li>
+                </ul>
+                <button class="buy-btn" onclick="buyProduct('OnePlus Nord CE4 Lite', 22999)">Buy Now</button>
+            </div>
+            
+            <div class="product-card">
+                <a href="phone-details.html?id=vivo-y18">
+                    <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;">
+                        Vivo Y18
+                    </div>
+                </a>
+                <h3 class="product-name">Vivo Y18</h3>
+                <div class="product-price">₹21,999</div>
+                <ul class="product-features">
+                    <li>6.72" FHD+ Display</li>
+                    <li>128GB Storage</li>
+                    <li>50MP Camera</li>
+                </ul>
+                <button class="buy-btn" onclick="buyProduct('Vivo Y18', 21999)">Buy Now</button>
+            </div>
+            
+            <div class="product-card">
+                <a href="phone-details.html?id=vivo-y17">
+                    <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;">
+                        Vivo Y17
+                    </div>
+                </a>
+                <h3 class="product-name">Vivo Y17</h3>
+                <div class="product-price">₹19,999</div>
+                <ul class="product-features">
+                    <li>6.72" FHD+ Display</li>
+                    <li>128GB Storage</li>
+                    <li>50MP Camera</li>
+                </ul>
+                <button class="buy-btn" onclick="buyProduct('Vivo Y17', 19999)">Buy Now</button>
+            </div>
+            
+            <div class="product-card">
+                <a href="phone-details.html?id=oppo-a38">
+                    <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;">
+                        Oppo A38
+                    </div>
+                </a>
+                <h3 class="product-name">Oppo A38</h3>
+                <div class="product-price">₹20,999</div>
+                <ul class="product-features">
+                    <li>6.7" HD+ Display</li>
+                    <li>128GB Storage</li>
+                    <li>50MP Camera</li>
+                </ul>
+                <button class="buy-btn" onclick="buyProduct('Oppo A38', 20999)">Buy Now</button>
+            </div>
+            
+            <div class="product-card">
+                <a href="phone-details.html?id=oppo-a78">
+                    <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;">
+                        Oppo A78
+                    </div>
+                </a>
+                <h3 class="product-name">Oppo A78</h3>
+                <div class="product-price">₹22,999</div>
+                <ul class="product-features">
+                    <li>6.56" FHD+ Display</li>
+                    <li>128GB Storage</li>
+                    <li>50MP Camera</li>
+                </ul>
+                <button class="buy-btn" onclick="buyProduct('Oppo A78', 22999)">Buy Now</button>
+            </div>
+            
+            <div class="product-card">
+                <a href="phone-details.html?id=oppo-a78-5g">
+                    <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;">
+                        Oppo A78 5G
+                    </div>
+                </a>
+                <h3 class="product-name">Oppo A78 5G</h3>
+                <div class="product-price">₹24,999</div>
+                <ul class="product-features">
+                    <li>6.72" FHD+ Display</li>
+                    <li>128GB Storage</li>
+                    <li>50MP Camera</li>
+                </ul>
+                <button class="buy-btn" onclick="buyProduct('Oppo A78 5G', 24999)">Buy Now</button>
+            </div>
+            
+            <div class="product-card">
+                <a href="phone-details.html?id=samsung-a36">
+                    <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;">
+                        Samsung A36
+                    </div>
+                </a>
+                <h3 class="product-name">Samsung A36</h3>
+                <div class="product-price">₹22,999</div>
+                <ul class="product-features">
+                    <li>6.6" FHD+ Display</li>
+                    <li>128GB Storage</li>
+                    <li>50MP Camera</li>
+                </ul>
+                <button class="buy-btn" onclick="buyProduct('Samsung A36', 22999)">Buy Now</button>
+            </div>
+            
+            <div class="product-card">
+                <a href="phone-details.html?id=redmi-note-14">
+                    <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;">
+                        Redmi Note 14
+                    </div>
+                </a>
+                <h3 class="product-name">Redmi Note 14</h3>
+                <div class="product-price">₹21,999</div>
+                <ul class="product-features">
+                    <li>6.67" FHD+ Display</li>
+                    <li>128GB Storage</li>
+                    <li>50MP Camera</li>
+                </ul>
+                <button class="buy-btn" onclick="buyProduct('Redmi Note 14', 21999)">Buy Now</button>
+            </div>
+            
+            <div class="product-card">
+                <a href="phone-details.html?id=realme-13-pro">
+                    <div class="product-image" style="background: #333; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.8rem;">
+                        Realme 13 Pro
+                    </div>
+                </a>
+                <h3 class="product-name">Realme 13 Pro</h3>
+                <div class="product-price">₹22,999</div>
+                <ul class="product-features">
+                    <li>6.7" FHD+ Display</li>
+                    <li>128GB Storage</li>
+                    <li>50MP Camera</li>
+                </ul>
+                <button class="buy-btn" onclick="buyProduct('Realme 13 Pro', 22999)">Buy Now</button>
+            </div>
         </div>
     </section>
-
-    <!-- Phone Details Modal -->
-    <div class="phone-modal" id="phoneModal">
-        <div class="phone-modal-content">
-            <div class="phone-modal-header">
-                <h2 id="phoneModalTitle" style="color: #2c5cc3;">Phone Details</h2>
-                <button class="close-phone-modal" onclick="closePhoneDetails()">&times;</button>
-            </div>
-            <div class="phone-details-container">
-                <div>
-                    <img id="phoneModalImage" src="" alt="Phone Image" class="phone-image-large">
-                    <div class="phone-specs">
-                        <h3 style="color: #ff6b6b; margin-bottom: 1rem;">📱 Specifications</h3>
-                        <div class="specs-grid" id="phoneSpecs">
-                            <!-- Specifications will be filled by JavaScript -->
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div style="background: #2d2d2d; padding: 1.5rem; border-radius: 10px;">
-                        <h3 id="phoneModalName" style="color: #2c5cc3; margin-bottom: 1rem;"></h3>
-                        <div id="phoneModalPrice" style="color: #ff6b6b; font-size: 1.5rem; font-weight: bold; margin-bottom: 1rem;"></div>
-                        <div id="phoneModalDescription" style="color: #cccccc; margin-bottom: 1.5rem;"></div>
-                        <button class="buy-btn" style="width: 100%; padding: 1rem; font-size: 1.1rem;" onclick="buyFromDetails()">Buy Now</button>
-                    </div>
-                    
-                    <div class="delivery-info">
-                        <h3>🚚 Delivery Information</h3>
-                        <div class="delivery-features">
-                            <div class="delivery-feature">
-                                <div style="font-size: 2rem;">📦</div>
-                                <div>Free Delivery</div>
-                                <small>in Noida</small>
-                            </div>
-                            <div class="delivery-feature">
-                                <div style="font-size: 2rem;">🛡️</div>
-                                <div>3 Months</div>
-                                <small>Extended Warranty</small>
-                            </div>
-                            <div class="delivery-feature">
-                                <div style="font-size: 2rem;">⚡</div>
-                                <div>Same Day</div>
-                                <small>Setup & Support</small>
-                            </div>
-                            <div class="delivery-feature">
-                                <div style="font-size: 2rem;">🔧</div>
-                                <div>Free</div>
-                                <small>Accessories</small>
-                            </div>
-                        </div>
-                        <p style="margin-top: 1rem; font-size: 0.9rem;">
-                            ✅ Free screen guard & case with every purchase<br>
-                            ✅ Complete phone setup before delivery<br>
-                            ✅ 7-day return policy<br>
-                            ✅ Genuine product guarantee
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Payment Modal -->
-    <div class="modal" id="paymentModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 id="modalTitle" style="color: #2c5cc3;">Complete Your Purchase</h2>
-                <button class="close-modal" onclick="closePayment()">&times;</button>
-            </div>
-            <div id="modalProductInfo" style="margin-bottom: 1.5rem;"></div>
-            <h3 style="color: #ff6b6b; margin-bottom: 1rem;">Select Payment Method</h3>
-            <div class="payment-options">
-                <div class="payment-option" onclick="selectPayment(this)">
-                    <strong>💳 Credit/Debit Card</strong>
-                    <p style="font-size: 0.9rem; color: #ccc; margin-top: 0.5rem;">Pay securely with your card</p>
-                </div>
-                <div class="payment-option" onclick="selectPayment(this)">
-                    <strong>📱 UPI Payment</strong>
-                    <p style="font-size: 0.9rem; color: #ccc; margin-top: 0.5rem;">Google Pay, PhonePe, Paytm</p>
-                </div>
-                <div class="payment-option" onclick="selectPayment(this)">
-                    <strong>🏦 Net Banking</strong>
-                    <p style="font-size: 0.9rem; color: #ccc; margin-top: 0.5rem;">All major banks supported</p>
-                </div>
-                <div class="payment-option" onclick="selectPayment(this)">
-                    <strong>💰 Cash on Delivery</strong>
-                    <p style="font-size: 0.9rem; color: #ccc; margin-top: 0.5rem;">Pay when you receive</p>
-                </div>
-            </div>
-            <button class="confirm-payment" onclick="processPayment()">Confirm & Place Order</button>
-        </div>
-    </div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -1089,276 +1330,51 @@
     </footer>
 
     <script>
-        // Phone database with detailed information
-        const phoneDatabase = {
-            'samsung-a25': {
-                name: 'Samsung Galaxy A25',
-                price: 18999,
-                image: 'samsung-galaxy-a25-1.jpg',
-                description: 'The perfect balance of performance and affordability with stunning AMOLED display and powerful camera system.',
-                specs: {
-                    'Display': '6.5" Super AMOLED, 120Hz',
-                    'Processor': 'Exynos 1280',
-                    'RAM': '8GB',
-                    'Storage': '128GB (Expandable)',
-                    'Camera': '50MP Main + 8MP Ultra Wide + 2MP Macro',
-                    'Battery': '5000mAh, 25W Fast Charging',
-                    'OS': 'Android 14 with One UI 6',
-                    '5G': 'Yes',
-                    'Security': 'Side-mounted Fingerprint'
-                }
-            },
-            'samsung-s23': {
-                name: 'Samsung Galaxy S23',
-                price: 74999,
-                image: '',
-                description: 'Flagship performance in a compact design with professional-grade camera system.',
-                specs: {
-                    'Display': '6.1" Dynamic AMOLED 2X, 120Hz',
-                    'Processor': 'Snapdragon 8 Gen 2',
-                    'RAM': '8GB',
-                    'Storage': '256GB',
-                    'Camera': '50MP Main + 12MP Ultra Wide + 10MP Telephoto',
-                    'Battery': '3900mAh, 25W Fast Charging',
-                    'OS': 'Android 14 with One UI 6',
-                    '5G': 'Yes',
-                    'Security': 'Ultrasonic Fingerprint'
-                }
-            },
-            'samsung-s23-ultra': {
-                name: 'Samsung Galaxy S23 Ultra',
-                price: 124999,
-                image: '',
-                description: 'The ultimate smartphone with S Pen, 200MP camera, and unmatched performance.',
-                specs: {
-                    'Display': '6.8" Dynamic AMOLED 2X, 120Hz',
-                    'Processor': 'Snapdragon 8 Gen 2',
-                    'RAM': '12GB',
-                    'Storage': '512GB',
-                    'Camera': '200MP Main + 12MP Ultra Wide + 10MP Telephoto 3x + 10MP Telephoto 10x',
-                    'Battery': '5000mAh, 45W Fast Charging',
-                    'OS': 'Android 14 with One UI 6',
-                    '5G': 'Yes',
-                    'S Pen': 'Included',
-                    'Security': 'Ultrasonic Fingerprint'
-                }
-            },
-            // Add more phone details here for all 50+ models
-            'iphone-15': {
-                name: 'iPhone 15',
-                price: 79900,
-                image: '',
-                description: 'The incredible iPhone 15 with Dynamic Island, 48MP camera, and USB-C connectivity.',
-                specs: {
-                    'Display': '6.1" Super Retina XDR',
-                    'Processor': 'A16 Bionic Chip',
-                    'RAM': '6GB',
-                    'Storage': '128GB',
-                    'Camera': '48MP Main + 12MP Ultra Wide',
-                    'Battery': 'Up to 20 hours video playback',
-                    'OS': 'iOS 17',
-                    'Connectivity': 'USB-C, 5G',
-                    'Security': 'Face ID'
-                }
-            }
-            // Continue adding all other phones...
-        };
-
-        let selectedProduct = null;
-        let selectedPrice = 0;
-        let currentPhoneId = null;
-
-        // Real-time search functionality
+        // Search functionality
         function searchProducts() {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+            const searchInput = document.getElementById('searchInput').value.toLowerCase();
             const productCards = document.querySelectorAll('.product-card');
-            const categoryTitles = document.querySelectorAll('.category-title');
-            const noResults = document.getElementById('noResults');
             const searchResults = document.getElementById('searchResults');
-            
-            let foundCount = 0;
-            let hasVisibleProducts = false;
-
-            // Show all category titles initially
-            categoryTitles.forEach(title => {
-                title.style.display = 'block';
-            });
-
-            if (searchTerm === '') {
-                // If search is empty, show all products
-                productCards.forEach(card => {
-                    card.style.display = 'block';
-                });
-                noResults.style.display = 'none';
-                searchResults.textContent = 'Showing all 50+ mobile models';
-                return;
-            }
+            const noResults = document.getElementById('noResults');
+            let foundResults = 0;
 
             productCards.forEach(card => {
                 const productName = card.querySelector('.product-name').textContent.toLowerCase();
-                const productCategory = card.closest('.products-grid').id;
+                const productFeatures = card.querySelector('.product-features').textContent.toLowerCase();
                 
-                if (productName.includes(searchTerm)) {
+                if (productName.includes(searchInput) || productFeatures.includes(searchInput)) {
                     card.style.display = 'block';
-                    foundCount++;
-                    
-                    // Show the parent category
-                    const categoryTitle = document.querySelector(`#${productCategory}`).previousElementSibling;
-                    if (categoryTitle && categoryTitle.classList.contains('category-title')) {
-                        categoryTitle.style.display = 'block';
-                        hasVisibleProducts = true;
-                    }
+                    foundResults++;
                 } else {
                     card.style.display = 'none';
                 }
             });
 
-            // Hide category titles that have no visible products
-            categoryTitles.forEach(title => {
-                const nextGrid = title.nextElementSibling;
-                if (nextGrid && nextGrid.classList.contains('products-grid')) {
-                    const hasVisible = Array.from(nextGrid.querySelectorAll('.product-card'))
-                        .some(card => card.style.display !== 'none');
-                    title.style.display = hasVisible ? 'block' : 'none';
-                }
-            });
-
-            // Show no results message if nothing found
-            if (foundCount === 0) {
-                noResults.style.display = 'block';
-                searchResults.textContent = `No results for "${searchTerm}"`;
-            } else {
+            if (searchInput === '') {
+                searchResults.textContent = '';
                 noResults.style.display = 'none';
-                searchResults.textContent = `Found ${foundCount} product${foundCount > 1 ? 's' : ''} for "${searchTerm}"`;
-            }
-        }
-
-        // Phone details modal functions
-        function openPhoneDetails(phoneId) {
-            currentPhoneId = phoneId;
-            const phone = phoneDatabase[phoneId];
-            
-            if (!phone) {
-                alert('Phone details not available yet');
-                return;
-            }
-
-            document.getElementById('phoneModalTitle').textContent = phone.name;
-            document.getElementById('phoneModalName').textContent = phone.name;
-            document.getElementById('phoneModalPrice').textContent = `₹${phone.price.toLocaleString()}`;
-            document.getElementById('phoneModalDescription').textContent = phone.description;
-            
-            // Set image
-            const phoneImage = document.getElementById('phoneModalImage');
-            if (phone.image) {
-                phoneImage.src = phone.image;
-                phoneImage.alt = phone.name;
+                productCards.forEach(card => card.style.display = 'block');
+            } else if (foundResults > 0) {
+                searchResults.textContent = `Found ${foundResults} products`;
+                noResults.style.display = 'none';
             } else {
-                phoneImage.style.display = 'none';
-            }
-
-            // Populate specifications
-            const specsGrid = document.getElementById('phoneSpecs');
-            specsGrid.innerHTML = '';
-            
-            for (const [key, value] of Object.entries(phone.specs)) {
-                const specItem = document.createElement('div');
-                specItem.className = 'spec-item';
-                specItem.innerHTML = `
-                    <div class="spec-label">${key}</div>
-                    <div class="spec-value">${value}</div>
-                `;
-                specsGrid.appendChild(specItem);
-            }
-
-            document.getElementById('phoneModal').style.display = 'flex';
-        }
-
-        function closePhoneDetails() {
-            document.getElementById('phoneModal').style.display = 'none';
-        }
-
-        function buyFromDetails() {
-            if (currentPhoneId && phoneDatabase[currentPhoneId]) {
-                const phone = phoneDatabase[currentPhoneId];
-                openPayment(phone.name, phone.price);
-                closePhoneDetails();
+                searchResults.textContent = '';
+                noResults.style.display = 'block';
             }
         }
 
-        // Auto-search as user types
-        document.getElementById('searchInput').addEventListener('input', searchProducts);
+        // Add this new function to redirect to payment page
+        function buyProduct(productName, price) {
+            window.location.href = `payment.html?product=${encodeURIComponent(productName)}&price=${price}`;
+        }
 
-        // Enter key for search
+        // Add Enter key support for search
         document.getElementById('searchInput').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 searchProducts();
             }
         });
-
-        // Payment modal functions
-        function openPayment(productName, price) {
-            selectedProduct = productName;
-            selectedPrice = price;
-            
-            document.getElementById('modalTitle').textContent = `Buy ${productName}`;
-            document.getElementById('modalProductInfo').innerHTML = `
-                <p><strong>Product:</strong> ${productName}</p>
-                <p><strong>Price:</strong> ₹${price.toLocaleString()}</p>
-                <p><strong>Delivery:</strong> Free delivery in Noida</p>
-                <p><strong>Warranty:</strong> 3 months extended warranty</p>
-            `;
-            
-            document.getElementById('paymentModal').style.display = 'flex';
-        }
-
-        function closePayment() {
-            document.getElementById('paymentModal').style.display = 'none';
-            // Reset selected payment
-            document.querySelectorAll('.payment-option').forEach(option => {
-                option.classList.remove('selected');
-            });
-        }
-
-        function selectPayment(element) {
-            // Remove selected class from all options
-            document.querySelectorAll('.payment-option').forEach(option => {
-                option.classList.remove('selected');
-            });
-            // Add selected class to clicked option
-            element.classList.add('selected');
-        }
-
-        function processPayment() {
-            const selectedPayment = document.querySelector('.payment-option.selected');
-            if (!selectedPayment) {
-                alert('Please select a payment method');
-                return;
-            }
-
-            const paymentMethod = selectedPayment.querySelector('strong').textContent;
-            alert(`Order placed successfully!\n\nProduct: ${selectedProduct}\nAmount: ₹${selectedPrice.toLocaleString()}\nPayment: ${paymentMethod}\n\nOur team will contact you for order confirmation.`);
-            closePayment();
-        }
-
-        // Close modals when clicking outside
-        window.onclick = function(event) {
-            const phoneModal = document.getElementById('phoneModal');
-            const paymentModal = document.getElementById('paymentModal');
-            
-            if (event.target === phoneModal) {
-                closePhoneDetails();
-            }
-            if (event.target === paymentModal) {
-                closePayment();
-            }
-        }
-
-        // Clear search when page loads
-        window.addEventListener('load', function() {
-            document.getElementById('searchInput').value = '';
-            searchProducts();
-        });
     </script>
 </body>
 </html>
++
