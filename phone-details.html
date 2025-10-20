@@ -1,0 +1,1917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phone Details - APM STORE NOIDA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <div class="brand-logo">APM</div>
+                <div class="brand-text">
+                    <strong>APM Store</strong>
+                    <span>Noida</span>
+                </div>
+            </div>
+            <div class="menu-toggle" id="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="index.html#story">Our Story</a></li>
+                <li><a href="index.html#features">Why APM</a></li>
+                <li><a href="index.html#reviews">Reviews</a></li>
+                <li><a href="index.html#follow">Follow Us</a></li>
+                <li class="nav-cta"><a href="payment.html">Make a Payment</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="header">
+        <h1 class="golden-text">APM STORE NOIDA</h1>
+        <p class="tagline">AFFORDABLE PRICE MOBILE</p>
+    </header>
+
+    <div class="phone-details-container">
+        <div class="phone-image-container">
+            <img id="phoneImage" src="" alt="" class="phone-image">
+            <div id="phonePlaceholder" class="phone-placeholder">Phone Image</div>
+        </div>
+        
+        <div class="phone-info">
+            <h2 class="phone-name" id="phoneName"></h2>
+            <div class="phone-price" id="phonePrice"></div>
+            <div class="phone-meta" id="phoneMeta"></div>
+            <div class="phone-description" id="phoneDescription"></div>
+
+            <div class="delivery-info">
+                <h3>🚚 Delivery Information</h3>
+                <div class="delivery-features">
+                    <div class="delivery-feature">
+                        <div>📦</div>
+                        <div>Free Delivery</div>
+                        <small>in Noida</small>
+                    </div>
+                    <div class="delivery-feature">
+                        <div>🛡️</div>
+                        <div>3 Months</div>
+                        <small>Extended Warranty</small>
+                    </div>
+                    <div class="delivery-feature">
+                        <div>⚡</div>
+                        <div>Same Day</div>
+                        <small>Setup & Support</small>
+                    </div>
+                    <div class="delivery-feature">
+                        <div>🔧</div>
+                        <div>Free</div>
+                        <small>Accessories</small>
+                    </div>
+                </div>
+                <p class="phone-feature-note">
+                    ✅ Free screen guard & case with every purchase<br>
+                    ✅ Complete phone setup before delivery<br>
+                    ✅ 7-day return policy<br>
+                    ✅ Genuine product guarantee
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <section class="detail-sections">
+        <div class="detail-card">
+            <h3>📱 Full Specifications</h3>
+            <div class="specs-grid" id="phoneSpecs"></div>
+        </div>
+
+        <div class="detail-card" id="highlightsCard" style="display: none;">
+            <h3>✨ Key Highlights</h3>
+            <div class="key-highlights" id="phoneHighlights"></div>
+        </div>
+
+        <div class="detail-card" id="ratingsCard">
+            <h3>⭐ Ratings Summary</h3>
+            <div class="rating-summary" id="phoneRatings"></div>
+        </div>
+    </section>
+
+    <a href="products.html" class="back-btn">← Back to Products</a>
+
+    <footer class="footer">
+        <p>&copy; 2024 APM STORE NOIDA. All rights reserved.</p>
+        <p>Join our journey to make quality mobile technology accessible to everyone!</p>
+        <a href="index.html" class="back-home">← Back to Home</a>
+    </footer>
+
+    <script>
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = document.getElementById('nav-links');
+        mobileMenu?.addEventListener('click', () => {
+            navLinks?.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks?.classList.remove('active');
+            });
+        });
+
+        // Get phone ID from URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const phoneId = urlParams.get('id');
+        let currentPhoneDetails = null;
+        
+        // Phone database with detailed information (will be expanded to 50+ models)
+        const phoneDatabase = {
+            'tecno-spark-10': {
+                name: 'Tecno Spark 10',
+                price: 9999,
+                image: { type: 'placeholder', text: 'Tecno Spark 10' },
+                description: 'Tecno Spark 10 brings a vivid 6.6" IPS LCD, generous storage, and a crisp 50MP camera for reliable everyday use.',
+                specs: {
+                    'Display': '6.6" IPS LCD',
+                    'Storage': '128GB Storage',
+                    'Camera': '50MP Camera'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '6.6" IPS LCD' },
+                    { title: 'Highlight 2', detail: '128GB Storage' },
+                    { title: 'Highlight 3', detail: '50MP Camera' }
+                ],
+                ratings: {
+                    performance: 3.9,
+                    camera: 3.8,
+                    battery: 4.1,
+                    value: 4.4
+                }
+            },
+            'redmi-12c': {
+                name: 'Redmi 12C',
+                price: 9999,
+                image: { type: 'placeholder', text: 'Redmi 12C' },
+                description: 'Redmi 12C offers a large 6.71" IPS display, dependable storage, and a 50MP camera for budget shoppers.',
+                specs: {
+                    'Display': '6.71" IPS LCD',
+                    'Storage': '64GB Storage',
+                    'Camera': '50MP Camera'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '6.71" IPS LCD' },
+                    { title: 'Highlight 2', detail: '64GB Storage' },
+                    { title: 'Highlight 3', detail: '50MP Camera' }
+                ],
+                ratings: {
+                    performance: 3.9,
+                    camera: 3.8,
+                    battery: 4.1,
+                    value: 4.4
+                }
+            },
+            'itel-p40-plus': {
+                name: 'Itel P40 Plus',
+                price: 4999,
+                image: { type: 'placeholder', text: 'Itel P40 Plus' },
+                description: 'Itel P40 Plus combines a wide HD+ screen with ample storage and a dependable camera for everyday use.',
+                specs: {
+                    'Display': '6.6" HD+ Display',
+                    'Storage': '64GB Storage',
+                    'Camera': '8MP Camera'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '6.6" HD+ Display' },
+                    { title: 'Highlight 2', detail: '64GB Storage' },
+                    { title: 'Highlight 3', detail: '8MP Camera' }
+                ],
+                ratings: {
+                    performance: 3.9,
+                    camera: 3.8,
+                    battery: 4.1,
+                    value: 4.4
+                }
+            },
+            'itel-vision-2': {
+                name: 'Itel Vision 2',
+                price: 4999,
+                image: { type: 'placeholder', text: 'Itel Vision 2' },
+                description: 'Itel Vision 2 delivers an HD+ display, expandable storage, and a versatile 13MP camera in a value package.',
+                specs: {
+                    'Display': '6.6" HD+ Display',
+                    'Storage': '32GB Storage',
+                    'Camera': '13MP Camera'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '6.6" HD+ Display' },
+                    { title: 'Highlight 2', detail: '32GB Storage' },
+                    { title: 'Highlight 3', detail: '13MP Camera' }
+                ],
+                ratings: {
+                    performance: 3.9,
+                    camera: 3.8,
+                    battery: 4.1,
+                    value: 4.4
+                }
+            },
+            'itel-a48': {
+                name: 'Itel A48',
+                price: 4499,
+                image: { type: 'placeholder', text: 'Itel A48' },
+                description: 'Itel A48 keeps things simple with an HD+ display, dependable storage, and an everyday 8MP camera.',
+                specs: {
+                    'Display': '6.5" HD+ Display',
+                    'Storage': '32GB Storage',
+                    'Camera': '8MP Camera'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '6.5" HD+ Display' },
+                    { title: 'Highlight 2', detail: '32GB Storage' },
+                    { title: 'Highlight 3', detail: '8MP Camera' }
+                ],
+                ratings: {
+                    performance: 3.9,
+                    camera: 3.8,
+                    battery: 4.1,
+                    value: 4.4
+                }
+            },
+            'itel-p38-pro': {
+                name: 'Itel P38 Pro',
+                price: 4999,
+                image: { type: 'placeholder', text: 'Itel P38 Pro' },
+                description: 'Itel P38 Pro offers a spacious HD+ panel, plenty of storage, and a 13MP camera with AI enhancements.',
+                specs: {
+                    'Display': '6.6" HD+ Display',
+                    'Storage': '64GB Storage',
+                    'Camera': '13MP Camera'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '6.6" HD+ Display' },
+                    { title: 'Highlight 2', detail: '64GB Storage' },
+                    { title: 'Highlight 3', detail: '13MP Camera' }
+                ],
+                ratings: {
+                    performance: 3.9,
+                    camera: 3.8,
+                    battery: 4.1,
+                    value: 4.4
+                }
+            },
+            'itel-a05s': {
+                name: 'Itel A05s',
+                price: 4299,
+                image: { type: 'placeholder', text: 'Itel A05s' },
+                description: 'Itel A05s is a compact option with a friendly 5.5" display, essential storage, and an easy 5MP camera.',
+                specs: {
+                    'Display': '5.5" Display',
+                    'Storage': '16GB Storage',
+                    'Camera': '5MP Camera'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '5.5" Display' },
+                    { title: 'Highlight 2', detail: '16GB Storage' },
+                    { title: 'Highlight 3', detail: '5MP Camera' }
+                ],
+                ratings: {
+                    performance: 3.9,
+                    camera: 3.8,
+                    battery: 4.1,
+                    value: 4.4
+                }
+            },
+            'itel-p40': {
+                name: 'Itel P40',
+                price: 4499,
+                image: { type: 'placeholder', text: 'Itel P40' },
+                description: 'Itel P40 focuses on essentials with an HD+ display, balanced storage, and a reliable 8MP camera.',
+                specs: {
+                    'Display': '6.6" HD+ Display',
+                    'Storage': '32GB Storage',
+                    'Camera': '8MP Camera'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '6.6" HD+ Display' },
+                    { title: 'Highlight 2', detail: '32GB Storage' },
+                    { title: 'Highlight 3', detail: '8MP Camera' }
+                ],
+                ratings: {
+                    performance: 3.9,
+                    camera: 3.8,
+                    battery: 4.1,
+                    value: 4.4
+                }
+            },
+            'itel-a23': {
+                name: 'Itel A23',
+                price: 3999,
+                image: { type: 'placeholder', text: 'Itel A23' },
+                description: 'Itel A23 is an easy pick with compact display, practical storage, and dependable 5MP camera.',
+                specs: {
+                    'Display': '5.5" Display',
+                    'Storage': '16GB Storage',
+                    'Camera': '5MP Camera'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '5.5" Display' },
+                    { title: 'Highlight 2', detail: '16GB Storage' },
+                    { title: 'Highlight 3', detail: '5MP Camera' }
+                ],
+                ratings: {
+                    performance: 3.9,
+                    camera: 3.8,
+                    battery: 4.1,
+                    value: 4.4
+                }
+            },
+            'itel-a48-plus': {
+                name: 'Itel A48 Plus',
+                price: 4699,
+                image: { type: 'placeholder', text: 'Itel A48 Plus' },
+                description: 'Itel A48 Plus adds a large HD+ panel, handy storage, and an 8MP camera with smart modes.',
+                specs: {
+                    'Display': '6.5" HD+ Display',
+                    'Storage': '32GB Storage',
+                    'Camera': '8MP Camera'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '6.5" HD+ Display' },
+                    { title: 'Highlight 2', detail: '32GB Storage' },
+                    { title: 'Highlight 3', detail: '8MP Camera' }
+                ],
+                ratings: {
+                    performance: 3.9,
+                    camera: 3.8,
+                    battery: 4.1,
+                    value: 4.4
+                }
+            },
+            'itel-p37': {
+                name: 'Itel P37',
+                price: 4199,
+                image: { type: 'placeholder', text: 'Itel P37' },
+                description: 'Itel P37 balances a 6.5" HD+ screen with practical storage and an 8MP camera for casual shooting.',
+                specs: {
+                    'Display': '6.5" HD+ Display',
+                    'Storage': '32GB Storage',
+                    'Camera': '8MP Camera'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '6.5" HD+ Display' },
+                    { title: 'Highlight 2', detail: '32GB Storage' },
+                    { title: 'Highlight 3', detail: '8MP Camera' }
+                ],
+                ratings: {
+                    performance: 3.9,
+                    camera: 3.8,
+                    battery: 4.1,
+                    value: 4.4
+                }
+            },
+            'itel-a05': {
+                name: 'Itel A05',
+                price: 3799,
+                image: { type: 'placeholder', text: 'Itel A05' },
+                description: 'Itel A05 keeps things compact with a 5.5" display, essential storage, and a friendly 5MP camera.',
+                specs: {
+                    'Display': '5.5" Display',
+                    'Storage': '16GB Storage',
+                    'Camera': '5MP Camera'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '5.5" Display' },
+                    { title: 'Highlight 2', detail: '16GB Storage' },
+                    { title: 'Highlight 3', detail: '5MP Camera' }
+                ],
+                ratings: {
+                    performance: 3.9,
+                    camera: 3.8,
+                    battery: 4.1,
+                    value: 4.4
+                }
+            },
+            'itel-a23-plus': {
+                name: 'Itel A23 Plus',
+                price: 4299,
+                image: { type: 'placeholder', text: 'Itel A23 Plus' },
+                description: 'Itel A23 Plus adds dual SIM flexibility, essential storage, and a simple camera experience.',
+                specs: {
+                    'Display': '5.5" Display',
+                    'Storage': '16GB Storage',
+                    'Camera': '5MP Camera'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '5.5" Display' },
+                    { title: 'Highlight 2', detail: '16GB Storage' },
+                    { title: 'Highlight 3', detail: '5MP Camera' }
+                ],
+                ratings: {
+                    performance: 3.9,
+                    camera: 3.8,
+                    battery: 4.1,
+                    value: 4.4
+                }
+            },
+            'itel-p36': {
+                name: 'Itel P36',
+                price: 3999,
+                image: { type: 'placeholder', text: 'Itel P36' },
+                description: 'Itel P36 brings a 6.1" display, expandable storage, and an 8MP camera with AI support.',
+                specs: {
+                    'Display': '6.1" Display',
+                    'Storage': '16GB Storage',
+                    'Camera': '8MP Camera'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '6.1" Display' },
+                    { title: 'Highlight 2', detail: '16GB Storage' },
+                    { title: 'Highlight 3', detail: '8MP Camera' }
+                ],
+                ratings: {
+                    performance: 3.9,
+                    camera: 3.8,
+                    battery: 4.1,
+                    value: 4.4
+                }
+            },
+            'itel-a47': {
+                name: 'Itel A47',
+                price: 4499,
+                image: { type: 'placeholder', text: 'Itel A47' },
+                description: 'Itel A47 features a 6.1" display, fingerprint security, and an easy 8MP AI dual camera.',
+                specs: {
+                    'Display': '6.1" Display',
+                    'Storage': '32GB Storage',
+                    'Camera': '8MP Camera'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '6.1" Display' },
+                    { title: 'Highlight 2', detail: '32GB Storage' },
+                    { title: 'Highlight 3', detail: '8MP Camera' }
+                ],
+                ratings: {
+                    performance: 3.9,
+                    camera: 3.8,
+                    battery: 4.1,
+                    value: 4.4
+                }
+            },
+            'itel-p38': {
+                name: 'Itel P38',
+                price: 4699,
+                image: { type: 'placeholder', text: 'Itel P38' },
+                description: 'Itel P38 includes a 6.6" HD+ display, dependable storage, and a 13MP camera with AI portrait modes.',
+                specs: {
+                    'Display': '6.6" HD+ Display',
+                    'Storage': '32GB Storage',
+                    'Camera': '13MP Camera'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '6.6" HD+ Display' },
+                    { title: 'Highlight 2', detail: '32GB Storage' },
+                    { title: 'Highlight 3', detail: '13MP Camera' }
+                ],
+                ratings: {
+                    performance: 3.9,
+                    camera: 3.8,
+                    battery: 4.1,
+                    value: 4.4
+                }
+            },
+            'itel-a06': {
+                name: 'Itel A06',
+                price: 4199,
+                image: { type: 'placeholder', text: 'Itel A06' },
+                description: 'Itel A06 stays compact with a 5.5" display, smooth performance, and an 8MP rear camera.',
+                specs: {
+                    'Display': '5.5" Display',
+                    'Storage': '32GB Storage',
+                    'Camera': '8MP Camera'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '5.5" Display' },
+                    { title: 'Highlight 2', detail: '32GB Storage' },
+                    { title: 'Highlight 3', detail: '8MP Camera' }
+                ],
+                ratings: {
+                    performance: 3.9,
+                    camera: 3.8,
+                    battery: 4.1,
+                    value: 4.4
+                }
+            },
+            'itel-a24': {
+                name: 'Itel A24',
+                price: 4499,
+                image: { type: 'placeholder', text: 'Itel A24' },
+                description: 'Itel A24 gives a compact display, friendly storage, and an 8MP camera for social-ready photos.',
+                specs: {
+                    'Display': '5.5" Display',
+                    'Storage': '32GB Storage',
+                    'Camera': '8MP Camera'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '5.5" Display' },
+                    { title: 'Highlight 2', detail: '32GB Storage' },
+                    { title: 'Highlight 3', detail: '8MP Camera' }
+                ],
+                ratings: {
+                    performance: 3.9,
+                    camera: 3.8,
+                    battery: 4.1,
+                    value: 4.4
+                }
+            },
+            'itel-p35': {
+                name: 'Itel P35',
+                price: 3899,
+                image: { type: 'placeholder', text: 'Itel P35' },
+                description: 'Itel P35 is a friendly daily driver with a 6.1" display, practical storage, and AI camera features.',
+                specs: {
+                    'Display': '6.1" Display',
+                    'Storage': '16GB Storage',
+                    'Camera': '8MP Camera'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '6.1" Display' },
+                    { title: 'Highlight 2', detail: '16GB Storage' },
+                    { title: 'Highlight 3', detail: '8MP Camera' }
+                ],
+                ratings: {
+                    performance: 3.9,
+                    camera: 3.8,
+                    battery: 4.1,
+                    value: 4.4
+                }
+            },
+            'itel-a46': {
+                name: 'Itel A46',
+                price: 4299,
+                image: { type: 'placeholder', text: 'Itel A46' },
+                description: 'Itel A46 packs a 6.1" display with AI dual cameras and face unlock in an affordable build.',
+                specs: {
+                    'Display': '6.1" Display',
+                    'Storage': '32GB Storage',
+                    'Camera': '8MP Camera'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '6.1" Display' },
+                    { title: 'Highlight 2', detail: '32GB Storage' },
+                    { title: 'Highlight 3', detail: '8MP Camera' }
+                ],
+                ratings: {
+                    performance: 3.9,
+                    camera: 3.8,
+                    battery: 4.1,
+                    value: 4.4
+                }
+            },
+            'itel-p39': {
+                name: 'Itel P39',
+                price: 4799,
+                image: { type: 'placeholder', text: 'Itel P39' },
+                description: 'Itel P39 brings a wide HD+ display, reliable storage, and an 8MP camera with portrait support.',
+                specs: {
+                    'Display': '6.6" HD+ Display',
+                    'Storage': '32GB Storage',
+                    'Camera': '8MP Camera'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '6.6" HD+ Display' },
+                    { title: 'Highlight 2', detail: '32GB Storage' },
+                    { title: 'Highlight 3', detail: '8MP Camera' }
+                ],
+                ratings: {
+                    performance: 3.9,
+                    camera: 3.8,
+                    battery: 4.1,
+                    value: 4.4
+                }
+            },
+            'itel-a07': {
+                name: 'Itel A07',
+                price: 4399,
+                image: { type: 'placeholder', text: 'Itel A07' },
+                description: 'Itel A07 combines a compact profile with generous storage and an 8MP camera for basic photography.',
+                specs: {
+                    'Display': '5.5" Display',
+                    'Storage': '32GB Storage',
+                    'Camera': '8MP Camera'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '5.5" Display' },
+                    { title: 'Highlight 2', detail: '32GB Storage' },
+                    { title: 'Highlight 3', detail: '8MP Camera' }
+                ],
+                ratings: {
+                    performance: 3.9,
+                    camera: 3.8,
+                    battery: 4.1,
+                    value: 4.4
+                }
+            },
+            'itel-a49': {
+                name: 'Itel A49',
+                price: 4599,
+                image: { type: 'placeholder', text: 'Itel A49' },
+                description: 'Itel A49 steps up with a 6.5" HD+ screen, roomy storage, and an 8MP dual AI camera.',
+                specs: {
+                    'Display': '6.5" HD+ Display',
+                    'Storage': '32GB Storage',
+                    'Camera': '8MP Camera'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '6.5" HD+ Display' },
+                    { title: 'Highlight 2', detail: '32GB Storage' },
+                    { title: 'Highlight 3', detail: '8MP Camera' }
+                ],
+                ratings: {
+                    performance: 3.9,
+                    camera: 3.8,
+                    battery: 4.1,
+                    value: 4.4
+                }
+            },
+            'itel-p41': {
+                name: 'Itel P41',
+                price: 4899,
+                image: { type: 'placeholder', text: 'Itel P41' },
+                description: 'Itel P41 partners an HD+ display with expanded storage and a versatile 13MP AI camera.',
+                specs: {
+                    'Display': '6.6" HD+ Display',
+                    'Storage': '64GB Storage',
+                    'Camera': '13MP Camera'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '6.6" HD+ Display' },
+                    { title: 'Highlight 2', detail: '64GB Storage' },
+                    { title: 'Highlight 3', detail: '13MP Camera' }
+                ],
+                ratings: {
+                    performance: 3.9,
+                    camera: 3.8,
+                    battery: 4.1,
+                    value: 4.4
+                }
+            },
+            'samsung-a05s': {
+                name: 'Samsung Galaxy A05s',
+                price: 11999,
+                image: { type: 'placeholder', text: 'Samsung A05s' },
+                description: 'Samsung Galaxy A05s introduces a large PLS LCD, reliable Snapdragon power, and a 50MP triple camera.',
+                specs: {
+                    'Display': '6.7" PLS LCD',
+                    'Storage': '64GB Storage',
+                    'Camera': '50MP Camera'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '6.7" PLS LCD' },
+                    { title: 'Highlight 2', detail: '64GB Storage' },
+                    { title: 'Highlight 3', detail: '50MP Camera' }
+                ],
+                ratings: {
+                    performance: 4.2,
+                    camera: 4.1,
+                    battery: 4.3,
+                    value: 4.3
+                }
+            },
+            'redmi-12': {
+                name: 'Redmi 12',
+                price: 11999,
+                image: { type: 'placeholder', text: 'Redmi 12' },
+                description: 'Redmi 12 mixes a premium glass design with a 6.71" display, large storage, and a 50MP camera.',
+                specs: {
+                    'Display': '6.71" IPS LCD',
+                    'Storage': '128GB Storage',
+                    'Camera': '50MP Camera'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '6.71" IPS LCD' },
+                    { title: 'Highlight 2', detail: '128GB Storage' },
+                    { title: 'Highlight 3', detail: '50MP Camera' }
+                ],
+                ratings: {
+                    performance: 4.2,
+                    camera: 4.1,
+                    battery: 4.3,
+                    value: 4.3
+                }
+            },
+            'infinix-hot-30': {
+                name: 'Infinix Hot 30',
+                price: 11999,
+                image: { type: 'placeholder', text: 'Infinix Hot 30' },
+                description: 'Infinix Hot 30 delivers a smooth 6.6" display, gaming-ready storage, and a 50MP camera array.',
+                specs: {
+                    'Display': '6.6" IPS LCD',
+                    'Storage': '128GB Storage',
+                    'Camera': '50MP Camera'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '6.6" IPS LCD' },
+                    { title: 'Highlight 2', detail: '128GB Storage' },
+                    { title: 'Highlight 3', detail: '50MP Camera' }
+                ],
+                ratings: {
+                    performance: 4.2,
+                    camera: 4.1,
+                    battery: 4.3,
+                    value: 4.3
+                }
+            },
+            'realme-c55': {
+                name: 'Realme C55',
+                price: 12999,
+                image: { type: 'placeholder', text: 'Realme C55' },
+                description: 'Realme C55 includes a 6.72" display, Mini Capsule notifications, and a 64MP AI camera duo.',
+                specs: {
+                    'Display': '6.72" IPS LCD',
+                    'Storage': '128GB Storage',
+                    'Camera': '64MP Camera'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '6.72" IPS LCD' },
+                    { title: 'Highlight 2', detail: '128GB Storage' },
+                    { title: 'Highlight 3', detail: '64MP Camera' }
+                ],
+                ratings: {
+                    performance: 4.2,
+                    camera: 4.1,
+                    battery: 4.3,
+                    value: 4.3
+                }
+            },
+            'tecno-pova-5': {
+                name: 'Tecno Pova 5',
+                price: 13999,
+                image: { type: 'placeholder', text: 'Tecno Pova 5' },
+                description: 'Tecno Pova 5 is built for gamers with a 6.78" display, ample storage, and a 50MP dual camera.',
+                specs: {
+                    'Display': '6.78" IPS LCD',
+                    'Storage': '128GB Storage',
+                    'Camera': '50MP Camera'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '6.78" IPS LCD' },
+                    { title: 'Highlight 2', detail: '128GB Storage' },
+                    { title: 'Highlight 3', detail: '50MP Camera' }
+                ],
+                ratings: {
+                    performance: 4.2,
+                    camera: 4.1,
+                    battery: 4.3,
+                    value: 4.3
+                }
+            },
+            'samsung-m15': {
+                name: 'Samsung Galaxy M15',
+                price: 13999,
+                image: { type: 'placeholder', text: 'Samsung M15' },
+                description: 'Samsung Galaxy M15 pairs a Super AMOLED display with a 6000mAh-class battery and triple camera array.',
+                specs: {
+                    'Display': '6.5" Super AMOLED',
+                    'Storage': '128GB Storage',
+                    'Camera': '50MP Camera'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '6.5" Super AMOLED' },
+                    { title: 'Highlight 2', detail: '128GB Storage' },
+                    { title: 'Highlight 3', detail: '50MP Camera' }
+                ],
+                ratings: {
+                    performance: 4.2,
+                    camera: 4.1,
+                    battery: 4.3,
+                    value: 4.3
+                }
+            },
+            'motorola-g52': {
+                name: 'Motorola G52',
+                price: 13999,
+                image: { type: 'placeholder', text: 'Motorola G52' },
+                description: 'Motorola G52 offers a pOLED screen feel, punchy dual speakers, and a versatile 50MP camera.',
+                specs: {
+                    'Display': '6.5" IPS LCD',
+                    'Storage': '128GB Storage',
+                    'Camera': '50MP Camera'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '6.5" IPS LCD' },
+                    { title: 'Highlight 2', detail: '128GB Storage' },
+                    { title: 'Highlight 3', detail: '50MP Camera' }
+                ],
+                ratings: {
+                    performance: 4.2,
+                    camera: 4.1,
+                    battery: 4.3,
+                    value: 4.3
+                }
+            },
+            'redmi-10': {
+                name: 'Redmi 10',
+                price: 10999,
+                image: { type: 'placeholder', text: 'Redmi 10' },
+                description: 'Redmi 10 combines a smooth FHD+ display with expandable storage and a 50MP camera setup.',
+                specs: {
+                    'Display': '6.5" FHD+ Display',
+                    'Storage': '64GB Storage',
+                    'Camera': '50MP Camera'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '6.5" FHD+ Display' },
+                    { title: 'Highlight 2', detail: '64GB Storage' },
+                    { title: 'Highlight 3', detail: '50MP Camera' }
+                ],
+                ratings: {
+                    performance: 4.2,
+                    camera: 4.1,
+                    battery: 4.3,
+                    value: 4.3
+                }
+            },
+            'realme-c51': {
+                name: 'Realme C51',
+                price: 10999,
+                image: { type: 'placeholder', text: 'Realme C51' },
+                description: 'Realme C51 sports a 6.6" 90Hz display, balanced storage, and a 50MP AI camera for social-ready shots.',
+                specs: {
+                    'Display': '6.6" HD+ Display',
+                    'Storage': '64GB Storage',
+                    'Camera': '50MP Camera'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '6.6" HD+ Display' },
+                    { title: 'Highlight 2', detail: '64GB Storage' },
+                    { title: 'Highlight 3', detail: '50MP Camera' }
+                ],
+                ratings: {
+                    performance: 4.2,
+                    camera: 4.1,
+                    battery: 4.3,
+                    value: 4.3
+                }
+            },
+            'infinix-hot-30i': {
+                name: 'Infinix Hot 30i',
+                price: 9999,
+                image: { type: 'placeholder', text: 'Infinix Hot 30i' },
+                description: 'Infinix Hot 30i blends a bold design with 6.6" display, smooth storage, and a 50MP sensor.',
+                specs: {
+                    'Display': '6.6" HD+ Display',
+                    'Storage': '64GB Storage',
+                    'Camera': '50MP Camera'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '6.6" HD+ Display' },
+                    { title: 'Highlight 2', detail: '64GB Storage' },
+                    { title: 'Highlight 3', detail: '50MP Camera' }
+                ],
+                ratings: {
+                    performance: 4.2,
+                    camera: 4.1,
+                    battery: 4.3,
+                    value: 4.3
+                }
+            },
+            'samsung-a25': {
+                name: 'Samsung Galaxy A25',
+                price: 18999,
+                image: 'samsung-galaxy-a25-1.jpg',
+                description: 'The perfect balance of performance and affordability with stunning AMOLED display and powerful camera system.',
+                specs: {
+                    'Display': '6.5" Super AMOLED, 120Hz',
+                    'Processor': 'Exynos 1280',
+                    'RAM': '8GB',
+                    'Storage': '128GB (Expandable)',
+                    'Camera': '50MP Main + 8MP Ultra Wide + 2MP Macro',
+                    'Battery': '5000mAh, 25W Fast Charging',
+                    'OS': 'Android 14 with One UI 6',
+                    '5G': 'Yes',
+                    'Security': 'Side-mounted Fingerprint'
+                },
+                highlights: [
+                    { title: 'AI Camera Enhancements', detail: 'Pro-level features like Nightography, expert Raw, and intelligent scene optimizations.' },
+                    { title: 'Immersive Gaming', detail: '120Hz refresh rate with Game Booster for smooth, responsive gameplay.' },
+                    { title: 'All-day Battery', detail: '5000mAh power with adaptive fast charging for uninterrupted use.' }
+                ],
+                ratings: {
+                    performance: 4.4,
+                    camera: 4.2,
+                    battery: 4.6,
+                    value: 4.5
+                }
+            },
+            'samsung-a35': {
+                name: 'Samsung Galaxy A35',
+                price: 22999,
+                image: { type: 'placeholder', text: 'Samsung A35' },
+                description: 'Samsung Galaxy A35 features a 6.6" Super AMOLED display, ample storage, and a refined 50MP triple camera.',
+                specs: {
+                    'Display': '6.6" FHD+ Display',
+                    'Storage': '128GB Storage',
+                    'Camera': '50MP Camera'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '6.6" FHD+ Display' },
+                    { title: 'Highlight 2', detail: '128GB Storage' },
+                    { title: 'Highlight 3', detail: '50MP Camera' }
+                ],
+                ratings: {
+                    performance: 4.4,
+                    camera: 4.3,
+                    battery: 4.4,
+                    value: 4.2
+                }
+            },
+            'samsung-a55': {
+                name: 'Samsung Galaxy A55',
+                price: 24999,
+                image: { type: 'placeholder', text: 'Samsung A55' },
+                description: 'Samsung Galaxy A55 refines the A-series with a vivid 6.6" display, metal frame, and a 50MP OIS camera.',
+                specs: {
+                    'Display': '6.6" FHD+ Display',
+                    'Storage': '128GB Storage',
+                    'Camera': '50MP Camera'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '6.6" FHD+ Display' },
+                    { title: 'Highlight 2', detail: '128GB Storage' },
+                    { title: 'Highlight 3', detail: '50MP Camera' }
+                ],
+                ratings: {
+                    performance: 4.4,
+                    camera: 4.3,
+                    battery: 4.4,
+                    value: 4.2
+                }
+            },
+            'samsung-a36': {
+                name: 'Samsung Galaxy A36',
+                price: 22999,
+                image: { type: 'placeholder', text: 'Samsung A36' },
+                description: 'Samsung Galaxy A36 offers balanced performance with a bright 6.6" display and dependable 50MP camera.',
+                specs: {
+                    'Display': '6.6" FHD+ Display',
+                    'Storage': '128GB Storage',
+                    'Camera': '50MP Camera'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '6.6" FHD+ Display' },
+                    { title: 'Highlight 2', detail: '128GB Storage' },
+                    { title: 'Highlight 3', detail: '50MP Camera' }
+                ],
+                ratings: {
+                    performance: 4.4,
+                    camera: 4.3,
+                    battery: 4.4,
+                    value: 4.2
+                }
+            },
+            'samsung-s23': {
+                name: 'Samsung Galaxy S23',
+                price: 74999,
+                image: '',
+                description: 'Flagship performance in a compact design with professional-grade camera system.',
+                specs: {
+                    'Display': '6.1" Dynamic AMOLED 2X, 120Hz',
+                    'Processor': 'Snapdragon 8 Gen 2',
+                    'RAM': '8GB',
+                    'Storage': '256GB',
+                    'Camera': '50MP Main + 12MP Ultra Wide + 10MP Telephoto',
+                    'Battery': '3900mAh, 25W Fast Charging',
+                    'OS': 'Android 14 with One UI 6',
+                    '5G': 'Yes',
+                    'Security': 'Ultrasonic Fingerprint'
+                },
+                highlights: [
+                    { title: 'Compact Flagship', detail: 'Premium build with armor aluminum frame and Gorilla Glass Victus 2.' },
+                    { title: 'Cinematic Nightography', detail: 'Advanced night mode across photo and video with real-time HDR.' },
+                    { title: 'Snapdragon Power', detail: 'Galaxy customized Snapdragon 8 Gen 2 ensures sustained peak performance.' }
+                ],
+                ratings: {
+                    performance: 4.7,
+                    camera: 4.6,
+                    battery: 4.2,
+                    value: 4.0
+                }
+            },
+            'samsung-s23-ultra': {
+                name: 'Samsung Galaxy S23 Ultra',
+                price: 124999,
+                image: '',
+                description: 'The ultimate smartphone with S Pen, 200MP camera, and unmatched performance.',
+                specs: {
+                    'Display': '6.8" Dynamic AMOLED 2X, 120Hz',
+                    'Processor': 'Snapdragon 8 Gen 2',
+                    'RAM': '12GB',
+                    'Storage': '512GB',
+                    'Camera': '200MP Main + 12MP Ultra Wide + 10MP Telephoto 3x + 10MP Telephoto 10x',
+                    'Battery': '5000mAh, 45W Fast Charging',
+                    'OS': 'Android 14 with One UI 6',
+                    '5G': 'Yes',
+                    'S Pen': 'Included',
+                    'Security': 'Ultrasonic Fingerprint'
+                },
+                highlights: [
+                    { title: 'Built-in S Pen', detail: 'Sketch, annotate, and control your phone with professional-grade precision.' },
+                    { title: '200MP Pro Camera', detail: 'Ultra-detail photography with advanced optical zoom and Expert RAW support.' },
+                    { title: 'Productivity Monster', detail: 'PC-like multitasking with DeX, 12GB RAM, and massive storage.' }
+                ],
+                ratings: {
+                    performance: 4.9,
+                    camera: 4.8,
+                    battery: 4.6,
+                    value: 4.2
+                }
+            },
+            'redmi-note-13': {
+                name: 'Redmi Note 13',
+                price: 21999,
+                image: { type: 'placeholder', text: 'Redmi Note 13' },
+                description: 'Redmi Note 13 offers a sleek design, 6.67" AMOLED display, and a 50MP triple camera setup.',
+                specs: {
+                    'Display': '6.67" FHD+ Display',
+                    'Storage': '128GB Storage',
+                    'Camera': '50MP Camera'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '6.67" FHD+ Display' },
+                    { title: 'Highlight 2', detail: '128GB Storage' },
+                    { title: 'Highlight 3', detail: '50MP Camera' }
+                ],
+                ratings: {
+                    performance: 4.4,
+                    camera: 4.3,
+                    battery: 4.4,
+                    value: 4.2
+                }
+            },
+            'redmi-note-13-pro': {
+                name: 'Redmi Note 13 Pro',
+                price: 23999,
+                image: { type: 'placeholder', text: 'Redmi Note 13 Pro' },
+                description: 'Redmi Note 13 Pro raises the bar with a 200MP main camera, fast charging, and an immersive display.',
+                specs: {
+                    'Display': '6.67" FHD+ Display',
+                    'Storage': '128GB Storage',
+                    'Camera': '200MP Camera'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '6.67" FHD+ Display' },
+                    { title: 'Highlight 2', detail: '128GB Storage' },
+                    { title: 'Highlight 3', detail: '200MP Camera' }
+                ],
+                ratings: {
+                    performance: 4.4,
+                    camera: 4.3,
+                    battery: 4.4,
+                    value: 4.2
+                }
+            },
+            'redmi-note-14': {
+                name: 'Redmi Note 14',
+                price: 21999,
+                image: { type: 'placeholder', text: 'Redmi Note 14' },
+                description: 'Redmi Note 14 keeps the series strong with a 120Hz AMOLED display and a robust 50MP triple camera.',
+                specs: {
+                    'Display': '6.67" FHD+ Display',
+                    'Storage': '128GB Storage',
+                    'Camera': '50MP Camera'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '6.67" FHD+ Display' },
+                    { title: 'Highlight 2', detail: '128GB Storage' },
+                    { title: 'Highlight 3', detail: '50MP Camera' }
+                ],
+                ratings: {
+                    performance: 4.4,
+                    camera: 4.3,
+                    battery: 4.4,
+                    value: 4.2
+                }
+            },
+            'realme-12-pro': {
+                name: 'Realme 12 Pro',
+                price: 22999,
+                image: { type: 'placeholder', text: 'Realme 12 Pro' },
+                description: 'Realme 12 Pro introduces premium styling, a periscope portrait camera, and smooth 120Hz display.',
+                specs: {
+                    'Display': '6.7" FHD+ Display',
+                    'Storage': '128GB Storage',
+                    'Camera': '50MP Camera'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '6.7" FHD+ Display' },
+                    { title: 'Highlight 2', detail: '128GB Storage' },
+                    { title: 'Highlight 3', detail: '50MP Camera' }
+                ],
+                ratings: {
+                    performance: 4.4,
+                    camera: 4.3,
+                    battery: 4.4,
+                    value: 4.2
+                }
+            },
+            'realme-12-pro-plus': {
+                name: 'Realme 12 Pro+',
+                price: 24999,
+                image: { type: 'placeholder', text: 'Realme 12 Pro+' },
+                description: 'Realme 12 Pro+ comes with flagship-grade design, 256GB storage, and a Sony IMX890 50MP sensor.',
+                specs: {
+                    'Display': '6.7" FHD+ Display',
+                    'Storage': '256GB Storage',
+                    'Camera': '50MP Camera'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '6.7" FHD+ Display' },
+                    { title: 'Highlight 2', detail: '256GB Storage' },
+                    { title: 'Highlight 3', detail: '50MP Camera' }
+                ],
+                ratings: {
+                    performance: 4.4,
+                    camera: 4.3,
+                    battery: 4.4,
+                    value: 4.2
+                }
+            },
+            'realme-13-pro': {
+                name: 'Realme 13 Pro',
+                price: 22999,
+                image: { type: 'placeholder', text: 'Realme 13 Pro' },
+                description: 'Realme 13 Pro focuses on sleek design with a 6.7" display, tuned Snapdragon power, and a 50MP shooter.',
+                specs: {
+                    'Display': '6.7" FHD+ Display',
+                    'Storage': '128GB Storage',
+                    'Camera': '50MP Camera'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '6.7" FHD+ Display' },
+                    { title: 'Highlight 2', detail: '128GB Storage' },
+                    { title: 'Highlight 3', detail: '50MP Camera' }
+                ],
+                ratings: {
+                    performance: 4.4,
+                    camera: 4.3,
+                    battery: 4.4,
+                    value: 4.2
+                }
+            },
+            'infinix-note-30-pro': {
+                name: 'Infinix Note 30 Pro',
+                price: 21999,
+                image: { type: 'placeholder', text: 'Infinix Note 30 Pro' },
+                description: 'Infinix Note 30 Pro showcases a 120Hz FHD+ display, JBL-tuned audio, and a sharp 108MP camera.',
+                specs: {
+                    'Display': '6.78" FHD+ Display',
+                    'Storage': '128GB Storage',
+                    'Camera': '108MP Camera'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '6.78" FHD+ Display' },
+                    { title: 'Highlight 2', detail: '128GB Storage' },
+                    { title: 'Highlight 3', detail: '108MP Camera' }
+                ],
+                ratings: {
+                    performance: 4.4,
+                    camera: 4.3,
+                    battery: 4.4,
+                    value: 4.2
+                }
+            },
+            'infinix-note-30-vip': {
+                name: 'Infinix Note 30 VIP',
+                price: 23999,
+                image: { type: 'placeholder', text: 'Infinix Note 30 VIP' },
+                description: 'Infinix Note 30 VIP brings wireless charging, 120Hz AMOLED panel, and a 108MP triple camera.',
+                specs: {
+                    'Display': '6.78" FHD+ Display',
+                    'Storage': '256GB Storage',
+                    'Camera': '108MP Camera'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '6.78" FHD+ Display' },
+                    { title: 'Highlight 2', detail: '256GB Storage' },
+                    { title: 'Highlight 3', detail: '108MP Camera' }
+                ],
+                ratings: {
+                    performance: 4.4,
+                    camera: 4.3,
+                    battery: 4.4,
+                    value: 4.2
+                }
+            },
+            'tecno-camon-20': {
+                name: 'Tecno Camon 20',
+                price: 20999,
+                image: { type: 'placeholder', text: 'Tecno Camon 20' },
+                description: 'Tecno Camon 20 stands out with geometric leather design, AMOLED display, and a 50MP RGBW camera.',
+                specs: {
+                    'Display': '6.67" FHD+ Display',
+                    'Storage': '128GB Storage',
+                    'Camera': '50MP Camera'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '6.67" FHD+ Display' },
+                    { title: 'Highlight 2', detail: '128GB Storage' },
+                    { title: 'Highlight 3', detail: '50MP Camera' }
+                ],
+                ratings: {
+                    performance: 4.4,
+                    camera: 4.3,
+                    battery: 4.4,
+                    value: 4.2
+                }
+            },
+            'tecno-camon-20-pro': {
+                name: 'Tecno Camon 20 Pro',
+                price: 22999,
+                image: { type: 'placeholder', text: 'Tecno Camon 20 Pro' },
+                description: 'Tecno Camon 20 Pro upgrades to a 120Hz AMOLED, Dimensity 8050 chipset, and a vivid 50MP shooter.',
+                specs: {
+                    'Display': '6.67" FHD+ Display',
+                    'Storage': '256GB Storage',
+                    'Camera': '50MP Camera'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '6.67" FHD+ Display' },
+                    { title: 'Highlight 2', detail: '256GB Storage' },
+                    { title: 'Highlight 3', detail: '50MP Camera' }
+                ],
+                ratings: {
+                    performance: 4.4,
+                    camera: 4.3,
+                    battery: 4.4,
+                    value: 4.2
+                }
+            },
+            'motorola-g54': {
+                name: 'Motorola G54',
+                price: 21999,
+                image: { type: 'placeholder', text: 'Motorola G54' },
+                description: 'Motorola G54 equips a smooth 6.5" display, stereo speakers, and a 50MP OIS camera for steady shots.',
+                specs: {
+                    'Display': '6.5" FHD+ Display',
+                    'Storage': '128GB Storage',
+                    'Camera': '50MP Camera'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '6.5" FHD+ Display' },
+                    { title: 'Highlight 2', detail: '128GB Storage' },
+                    { title: 'Highlight 3', detail: '50MP Camera' }
+                ],
+                ratings: {
+                    performance: 4.4,
+                    camera: 4.3,
+                    battery: 4.4,
+                    value: 4.2
+                }
+            },
+            'motorola-g54-5g': {
+                name: 'Motorola G54 5G',
+                price: 23999,
+                image: { type: 'placeholder', text: 'Motorola G54 5G' },
+                description: 'Motorola G54 5G adds extra storage, faster RAM, and a 50MP OIS primary camera for stable imaging.',
+                specs: {
+                    'Display': '6.5" FHD+ Display',
+                    'Storage': '256GB Storage',
+                    'Camera': '50MP Camera'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '6.5" FHD+ Display' },
+                    { title: 'Highlight 2', detail: '256GB Storage' },
+                    { title: 'Highlight 3', detail: '50MP Camera' }
+                ],
+                ratings: {
+                    performance: 4.4,
+                    camera: 4.3,
+                    battery: 4.4,
+                    value: 4.2
+                }
+            },
+            'oneplus-nord-ce4': {
+                name: 'OnePlus Nord CE4',
+                price: 24999,
+                image: { type: 'placeholder', text: 'OnePlus Nord CE4' },
+                description: 'OnePlus Nord CE4 offers fast charging, Snapdragon 7 Gen series power, and a 50MP Sony sensor.',
+                specs: {
+                    'Display': '6.7" FHD+ Display',
+                    'Storage': '128GB Storage',
+                    'Camera': '50MP Camera'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '6.7" FHD+ Display' },
+                    { title: 'Highlight 2', detail: '128GB Storage' },
+                    { title: 'Highlight 3', detail: '50MP Camera' }
+                ],
+                ratings: {
+                    performance: 4.4,
+                    camera: 4.3,
+                    battery: 4.4,
+                    value: 4.2
+                }
+            },
+            'oneplus-nord-ce4-lite': {
+                name: 'OnePlus Nord CE4 Lite',
+                price: 22999,
+                image: { type: 'placeholder', text: 'OnePlus Nord CE4 Lite' },
+                description: 'OnePlus Nord CE4 Lite is a slim powerhouse with 6.72" display, huge battery, and a 50MP Sony sensor.',
+                specs: {
+                    'Display': '6.72" FHD+ Display',
+                    'Storage': '128GB Storage',
+                    'Camera': '50MP Camera'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '6.72" FHD+ Display' },
+                    { title: 'Highlight 2', detail: '128GB Storage' },
+                    { title: 'Highlight 3', detail: '50MP Camera' }
+                ],
+                ratings: {
+                    performance: 4.4,
+                    camera: 4.3,
+                    battery: 4.4,
+                    value: 4.2
+                }
+            },
+            'vivo-y18': {
+                name: 'Vivo Y18',
+                price: 21999,
+                image: { type: 'placeholder', text: 'Vivo Y18' },
+                description: 'Vivo Y18 combines a stylish design, 6.72" display, and a 50MP camera tuned for portrait shots.',
+                specs: {
+                    'Display': '6.72" FHD+ Display',
+                    'Storage': '128GB Storage',
+                    'Camera': '50MP Camera'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '6.72" FHD+ Display' },
+                    { title: 'Highlight 2', detail: '128GB Storage' },
+                    { title: 'Highlight 3', detail: '50MP Camera' }
+                ],
+                ratings: {
+                    performance: 4.4,
+                    camera: 4.3,
+                    battery: 4.4,
+                    value: 4.2
+                }
+            },
+            'vivo-y17': {
+                name: 'Vivo Y17',
+                price: 19999,
+                image: { type: 'placeholder', text: 'Vivo Y17' },
+                description: 'Vivo Y17 delivers a balanced performance with long battery life, 6.72" display, and a 50MP camera.',
+                specs: {
+                    'Display': '6.72" FHD+ Display',
+                    'Storage': '128GB Storage',
+                    'Camera': '50MP Camera'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '6.72" FHD+ Display' },
+                    { title: 'Highlight 2', detail: '128GB Storage' },
+                    { title: 'Highlight 3', detail: '50MP Camera' }
+                ],
+                ratings: {
+                    performance: 4.4,
+                    camera: 4.3,
+                    battery: 4.4,
+                    value: 4.2
+                }
+            },
+            'oppo-a38': {
+                name: 'Oppo A38',
+                price: 20999,
+                image: { type: 'placeholder', text: 'Oppo A38' },
+                description: 'Oppo A38 is a stylish choice with 90Hz display, 33W fast charging, and a 50MP camera.',
+                specs: {
+                    'Display': '6.7" HD+ Display',
+                    'Storage': '128GB Storage',
+                    'Camera': '50MP Camera'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '6.7" HD+ Display' },
+                    { title: 'Highlight 2', detail: '128GB Storage' },
+                    { title: 'Highlight 3', detail: '50MP Camera' }
+                ],
+                ratings: {
+                    performance: 4.4,
+                    camera: 4.3,
+                    battery: 4.4,
+                    value: 4.2
+                }
+            },
+            'oppo-a78': {
+                name: 'Oppo A78',
+                price: 22999,
+                image: { type: 'placeholder', text: 'Oppo A78' },
+                description: 'Oppo A78 delivers stereo speakers, fast charging, and a 50MP camera for vibrant photography.',
+                specs: {
+                    'Display': '6.56" FHD+ Display',
+                    'Storage': '128GB Storage',
+                    'Camera': '50MP Camera'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '6.56" FHD+ Display' },
+                    { title: 'Highlight 2', detail: '128GB Storage' },
+                    { title: 'Highlight 3', detail: '50MP Camera' }
+                ],
+                ratings: {
+                    performance: 4.4,
+                    camera: 4.3,
+                    battery: 4.4,
+                    value: 4.2
+                }
+            },
+            'oppo-a78-5g': {
+                name: 'Oppo A78 5G',
+                price: 24999,
+                image: { type: 'placeholder', text: 'Oppo A78 5G' },
+                description: 'Oppo A78 5G adds 5G speeds, smooth display, and a reliable 50MP AI portrait camera.',
+                specs: {
+                    'Display': '6.72" FHD+ Display',
+                    'Storage': '128GB Storage',
+                    'Camera': '50MP Camera'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '6.72" FHD+ Display' },
+                    { title: 'Highlight 2', detail: '128GB Storage' },
+                    { title: 'Highlight 3', detail: '50MP Camera' }
+                ],
+                ratings: {
+                    performance: 4.4,
+                    camera: 4.3,
+                    battery: 4.4,
+                    value: 4.2
+                }
+            },
+            'oneplus-11r': {
+                name: 'OnePlus 11R',
+                price: 39999,
+                image: 'oneplus-11r.jpg',
+                description: 'OnePlus 11R delivers flagship-level Snapdragon 8+ Gen 1 performance with a fluid 120Hz display and 50MP camera.',
+                specs: {
+                    'Display': '6.74" FHD+ Display',
+                    'Storage': '256GB Storage',
+                    'Camera': '50MP Camera'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '6.74" FHD+ Display' },
+                    { title: 'Highlight 2', detail: '256GB Storage' },
+                    { title: 'Highlight 3', detail: '50MP Camera' }
+                ],
+                ratings: {
+                    performance: 4.6,
+                    camera: 4.5,
+                    battery: 4.4,
+                    value: 4.3
+                }
+            },
+            'google-pixel-7': {
+                name: 'Google Pixel 7',
+                price: 44999,
+                image: 'google-pixel-7.jpg',
+                description: 'Google Pixel 7 provides Tensor G2 intelligence, stellar cameras, and clean Android for discerning users.',
+                specs: {
+                    'Display': '6.3" FHD+ Display',
+                    'Storage': '128GB Storage',
+                    'Camera': '50MP Camera'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '6.3" FHD+ Display' },
+                    { title: 'Highlight 2', detail: '128GB Storage' },
+                    { title: 'Highlight 3', detail: '50MP Camera' }
+                ],
+                ratings: {
+                    performance: 4.6,
+                    camera: 4.5,
+                    battery: 4.4,
+                    value: 4.3
+                }
+            },
+            'google-pixel-7-pro': {
+                name: 'Google Pixel 7 Pro',
+                price: 54999,
+                image: 'google-pixel-7-pro.jpg',
+                description: 'Google Pixel 7 Pro raises the experience with a triple camera, macro focus, and a silky 120Hz display.',
+                specs: {
+                    'Display': '6.7" FHD+ Display',
+                    'Storage': '256GB Storage',
+                    'Camera': '50MP Camera',
+                    'RAM': '12GB RAM',
+                    'Battery': '5124mAh Battery'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '6.7" FHD+ Display' },
+                    { title: 'Highlight 2', detail: '256GB Storage' },
+                    { title: 'Highlight 3', detail: '50MP Camera' },
+                    { title: 'Highlight 4', detail: '12GB RAM' },
+                    { title: 'Highlight 5', detail: '5124mAh Battery' }
+                ],
+                ratings: {
+                    performance: 4.6,
+                    camera: 4.5,
+                    battery: 4.4,
+                    value: 4.3
+                }
+            },
+            'apple-iphone-14': {
+                name: 'Apple iPhone 14',
+                price: 49999,
+                image: 'apple-iphone-14.jpg',
+                description: 'Apple iPhone 14 offers A15 power, crash detection, and a 12MP dual camera system in a timeless design.',
+                specs: {
+                    'Display': '6.1" FHD+ Display',
+                    'Storage': '128GB Storage',
+                    'Camera': '12MP Camera'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '6.1" FHD+ Display' },
+                    { title: 'Highlight 2', detail: '128GB Storage' },
+                    { title: 'Highlight 3', detail: '12MP Camera' }
+                ],
+                ratings: {
+                    performance: 4.6,
+                    camera: 4.5,
+                    battery: 4.4,
+                    value: 4.3
+                }
+            },
+            'apple-iphone-14-pro': {
+                name: 'Apple iPhone 14 Pro',
+                price: 64999,
+                image: 'apple-iphone-14-pro.jpg',
+                description: 'Apple iPhone 14 Pro introduces Dynamic Island, A16 Bionic, and a 48MP Pro camera system.',
+                specs: {
+                    'Display': '6.1" FHD+ Display',
+                    'Storage': '256GB Storage',
+                    'Camera': '48MP Camera'
+                },
+                highlights: [
+                    { title: 'Highlight 1', detail: '6.1" FHD+ Display' },
+                    { title: 'Highlight 2', detail: '256GB Storage' },
+                    { title: 'Highlight 3', detail: '48MP Camera' }
+                ],
+                ratings: {
+                    performance: 4.6,
+                    camera: 4.5,
+                    battery: 4.4,
+                    value: 4.3
+                }
+            },
+            // Add more phone details here for all 50+ models
+            'iphone-15': {
+                name: 'iPhone 15',
+                price: 79900,
+                image: '',
+                description: 'The incredible iPhone 15 with Dynamic Island, 48MP camera, and USB-C connectivity.',
+                specs: {
+                    'Display': '6.1" Super Retina XDR',
+                    'Processor': 'A16 Bionic Chip',
+                    'RAM': '6GB',
+                    'Storage': '128GB',
+                    'Camera': '48MP Main + 12MP Ultra Wide',
+                    'Battery': 'Up to 20 hours video playback',
+                    'OS': 'iOS 17',
+                    'Connectivity': 'USB-C, 5G',
+                    'Security': 'Face ID'
+                },
+                highlights: [
+                    { title: 'Dynamic Island', detail: 'Interactive notifications, Live Activities, and contextual controls at the top.' },
+                    { title: 'New 48MP Sensor', detail: 'Capture super-high-resolution photos with incredible detail and color accuracy.' },
+                    { title: 'USB-C Convenience', detail: 'Universal charging with USB-C and improved transfer speeds.' }
+                ],
+                ratings: {
+                    performance: 4.8,
+                    camera: 4.5,
+                    battery: 4.3,
+                    value: 4.1
+                }
+            },
+            'iphone-15-plus': {
+                name: 'iPhone 15 Plus',
+                price: 89900,
+                image: '',
+                description: 'Larger version of iPhone 15 with extended battery life.',
+                specs: {
+                    'Display': '6.7" Super Retina XDR',
+                    'Processor': 'A16 Bionic Chip',
+                    'RAM': '6GB',
+                    'Storage': '128GB',
+                    'Camera': '48MP Main + 12MP Ultra Wide',
+                    'Battery': 'Up to 29 hours video playback',
+                    'OS': 'iOS 17',
+                    'Connectivity': 'USB-C, 5G',
+                    'Security': 'Face ID'
+                }
+            }
+        };
+
+        function renderMeta(meta) {
+            const metaContainer = document.getElementById('phoneMeta');
+            if (!metaContainer) {
+                return;
+            }
+
+            if (!meta) {
+                metaContainer.innerHTML = '';
+                return;
+            }
+
+            const items = [];
+            if (meta.processor) {
+                items.push(`<div class="meta-item"><strong>Processor:</strong> ${escapeHtml(meta.processor)}</div>`);
+            }
+            if (meta.display) {
+                items.push(`<div class="meta-item"><strong>Display:</strong> ${escapeHtml(meta.display)}</div>`);
+            }
+            if (meta.battery) {
+                items.push(`<div class="meta-item"><strong>Battery:</strong> ${escapeHtml(meta.battery)}</div>`);
+            }
+            if (meta.os) {
+                items.push(`<div class="meta-item"><strong>OS:</strong> ${escapeHtml(meta.os)}</div>`);
+            }
+            if (meta.releaseDate) {
+                items.push(`<div class="meta-item"><strong>Release:</strong> ${escapeHtml(meta.releaseDate)}</div>`);
+            }
+            if (Array.isArray(meta.tags) && meta.tags.length) {
+                const tags = meta.tags.map(tag => `<span class="meta-tag">${escapeHtml(tag)}</span>`).join('');
+                items.push(`<div class="meta-tags">${tags}</div>`);
+            }
+
+            metaContainer.innerHTML = items.join('');
+        }
+
+        function renderHighlights(highlights) {
+            const highlightsCard = document.getElementById('highlightsCard');
+            const highlightsContainer = document.getElementById('phoneHighlights');
+            if (!highlightsCard || !highlightsContainer) {
+                return;
+            }
+
+            if (!Array.isArray(highlights) || highlights.length === 0) {
+                highlightsCard.style.display = 'none';
+                highlightsContainer.innerHTML = '';
+                return;
+            }
+
+            const list = highlights.map(item => {
+                if (typeof item === 'string') {
+                    return `<div class="highlight-item"><strong>${escapeHtml(item)}</strong></div>`;
+                }
+
+                const title = item?.title ? `<strong>${escapeHtml(item.title)}</strong>` : '';
+                const detail = item?.detail ? `<p>${escapeHtml(item.detail)}</p>` : '';
+                return `<div class="highlight-item">${title}${detail}</div>`;
+            }).join('');
+
+            highlightsContainer.innerHTML = list;
+            highlightsCard.style.display = 'block';
+        }
+
+        function renderRatings(ratings) {
+            const ratingsContainer = document.getElementById('phoneRatings');
+            if (!ratingsContainer) {
+                return;
+            }
+
+            if (!ratings) {
+                ratingsContainer.innerHTML = '<p>No ratings available yet.</p>';
+                return;
+            }
+
+            if (Array.isArray(ratings)) {
+                ratingsContainer.innerHTML = ratings.map(rating => `<div class="rating-item">${escapeHtml(rating)}</div>`).join('');
+                return;
+            }
+
+            const entries = Object.entries(ratings)
+                .filter(([, value]) => value !== null && value !== undefined)
+                .map(([key, value]) => {
+                    const label = key.replace(/_/g, ' ');
+                    const displayValue = typeof value === 'number' ? value.toFixed(1) : escapeHtml(String(value));
+                    return `<div class="rating-item"><strong>${escapeHtml(label)}:</strong> ${displayValue}/5</div>`;
+                });
+
+            ratingsContainer.innerHTML = entries.length ? entries.join('') : '<p>No ratings available yet.</p>';
+        }
+
+        function renderSpecifications(phone) {
+            const specsContainer = document.getElementById('phoneSpecs');
+            if (!specsContainer) {
+                return;
+            }
+
+            const specs = phone?.specs && typeof phone.specs === 'object' ? phone.specs : {};
+            const entries = Object.entries(specs)
+                .filter(([, value]) => value !== null && value !== undefined && String(value).trim() !== '')
+                .map(([key, value]) => {
+                    return `<div class="spec-item"><div class="spec-key">${escapeHtml(key)}</div><div class="spec-value">${escapeHtml(value)}</div></div>`;
+                });
+
+            if (entries.length === 0 && Array.isArray(phone?.features) && phone.features.length) {
+                specsContainer.innerHTML = phone.features.map((feature, index) => `<div class="spec-item"><div class="spec-key">Feature ${index + 1}</div><div class="spec-value">${escapeHtml(feature)}</div></div>`).join('');
+                return;
+            }
+
+            specsContainer.innerHTML = entries.length ? entries.join('') : '<p class="spec-empty">Specifications coming soon.</p>';
+        }
+
+        function escapeHtml(text) {
+            if (text === null || text === undefined) {
+                return '';
+            }
+
+            return String(text)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
+        function normalizeStoredProduct(data, idFromUrl) {
+            if (!data) {
+                return null;
+            }
+
+            if (idFromUrl && data.id && data.id !== idFromUrl) {
+                return null;
+            }
+
+            const priceValue = typeof data.price === 'number' && !Number.isNaN(data.price)
+                ? data.price
+                : parseInt((data.priceText || '').replace(/[₹,]/g, ''), 10);
+
+            const specs = {};
+            if (Array.isArray(data.features)) {
+                data.features.filter(Boolean).forEach((feature, index) => {
+                    specs[`Highlight ${index + 1}`] = feature;
+                });
+            }
+
+            return {
+                name: data.name || '',
+                price: Number.isNaN(priceValue) ? null : priceValue,
+                priceText: data.priceText || '',
+                description: data.description || (data.name ? `Explore the key highlights of ${data.name}${data.category ? ` from our ${data.category}` : ''}.` : ''),
+                specs,
+                features: data.features || [],
+                image: data.image,
+                category: data.category,
+                source: 'stored'
+            };
+        }
+
+        // Display phone details
+        function displayPhoneDetails() {
+            let storedProduct = null;
+            const storedRaw = localStorage.getItem('selectedProduct');
+
+            if (storedRaw) {
+                try {
+                    const parsed = JSON.parse(storedRaw);
+                    storedProduct = normalizeStoredProduct(parsed, phoneId);
+                } catch (error) {
+                    console.error('Unable to parse stored product details', error);
+                }
+
+                localStorage.removeItem('selectedProduct');
+            }
+
+            let phone = storedProduct;
+
+            if (!phone || !phone.name) {
+                if (phoneId && phoneDatabase[phoneId]) {
+                    phone = {
+                        ...phoneDatabase[phoneId],
+                        source: 'database'
+                    };
+                }
+            }
+
+            if (!phone) {
+                document.getElementById('phoneName').textContent = 'Phone Not Found';
+                document.getElementById('phonePrice').textContent = '';
+                document.getElementById('phoneDescription').textContent = 'We could not find details for this product.';
+
+                const placeholderEl = document.getElementById('phonePlaceholder');
+                placeholderEl.style.display = 'flex';
+                placeholderEl.textContent = 'Phone Image';
+                document.getElementById('phoneImage').style.display = 'none';
+
+                renderMeta(null);
+                renderHighlights(null);
+                renderRatings(null);
+                renderSpecifications({});
+
+                currentPhoneDetails = null;
+                return;
+            }
+
+            currentPhoneDetails = phone;
+
+            document.title = `${phone.name} - APM STORE NOIDA`;
+
+            const phoneNameEl = document.getElementById('phoneName');
+            phoneNameEl.textContent = phone.name;
+
+            const phonePriceEl = document.getElementById('phonePrice');
+            if (typeof phone.price === 'number' && !Number.isNaN(phone.price)) {
+                phonePriceEl.textContent = `₹${phone.price.toLocaleString()}`;
+            } else if (phone.priceText) {
+                phonePriceEl.textContent = phone.priceText;
+            } else if (phone.price) {
+                phonePriceEl.textContent = phone.price;
+            } else {
+                phonePriceEl.textContent = '';
+            }
+
+            renderMeta(phone.meta || {
+                processor: phone.specs?.Processor || phone.specs?.CPU,
+                display: phone.specs?.Display,
+                battery: phone.specs?.Battery,
+                os: phone.specs?.OS,
+                releaseDate: phone.releaseDate,
+                tags: phone.tags
+            });
+
+            const phoneDescriptionEl = document.getElementById('phoneDescription');
+            const descriptionParts = [];
+
+            if (phone.description) {
+                descriptionParts.push(`<p>${escapeHtml(phone.description)}</p>`);
+            }
+
+            if (phone.source === 'stored' && Array.isArray(phone.features) && phone.features.length) {
+                const featureItems = phone.features.map(feature => `<li>${escapeHtml(feature)}</li>`).join('');
+                descriptionParts.push(`<ul class="phone-feature-list">${featureItems}</ul>`);
+            }
+
+            if (descriptionParts.length) {
+                phoneDescriptionEl.innerHTML = descriptionParts.join('');
+            } else {
+                phoneDescriptionEl.textContent = '';
+            }
+
+            const phoneImageEl = document.getElementById('phoneImage');
+            const placeholderEl = document.getElementById('phonePlaceholder');
+            let imageHandled = false;
+
+            if (phone.image) {
+                if (typeof phone.image === 'string' && phone.image.trim() !== '') {
+                    phoneImageEl.src = phone.image;
+                    phoneImageEl.alt = phone.name;
+                    phoneImageEl.style.display = 'block';
+                    placeholderEl.style.display = 'none';
+                    imageHandled = true;
+                } else if (phone.image.type === 'image' && phone.image.src) {
+                    phoneImageEl.src = phone.image.src;
+                    phoneImageEl.alt = phone.image.alt || phone.name;
+                    phoneImageEl.style.display = 'block';
+                    placeholderEl.style.display = 'none';
+                    imageHandled = true;
+                } else if (phone.image.type === 'placeholder' && phone.image.text) {
+                    placeholderEl.style.display = 'flex';
+                    placeholderEl.textContent = phone.image.text;
+                    phoneImageEl.style.display = 'none';
+                    imageHandled = true;
+                }
+            }
+
+            if (!imageHandled) {
+                phoneImageEl.style.display = 'none';
+                placeholderEl.style.display = 'flex';
+                placeholderEl.textContent = phone.name || 'Phone Image';
+            }
+
+            renderHighlights(phone.highlights || (phone.source === 'stored' ? phone.features?.map((feature, index) => ({ title: `Highlight ${index + 1}`, detail: feature })) : null));
+
+            renderRatings(phone.ratings || null);
+
+            renderSpecifications(phone);
+        }
+
+        function openPayment() {
+            if (!currentPhoneDetails || !currentPhoneDetails.name) {
+                return;
+            }
+
+            const priceValue = typeof currentPhoneDetails.price === 'number' && !Number.isNaN(currentPhoneDetails.price)
+                ? currentPhoneDetails.price
+                : parseInt((currentPhoneDetails.priceText || '').replace(/[₹,]/g, ''), 10);
+
+            const finalPrice = Number.isNaN(priceValue) ? 0 : priceValue;
+
+            window.location.href = `payment.html?product=${encodeURIComponent(currentPhoneDetails.name)}&price=${finalPrice}`;
+        }
+
+        // Load phone details when page loads
+        window.addEventListener('load', displayPhoneDetails);
+    </script>
+</body>
+</html>

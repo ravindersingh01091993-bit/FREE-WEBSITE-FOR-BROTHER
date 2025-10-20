@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - APM STORE NOIDA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            background-color: #000000;
+            color: #ffffff;
+        }
+
+        /* Navigation Menu - Black Background */
+        .navbar {
+            background: #000000;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid #2c5cc3;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links a:hover {
+            color: #ff6b6b;
+            background: rgba(44, 92, 195, 0.1);
+        }
+
+        .nav-links a.active {
+            color: #ff6b6b;
+            border-bottom: 2px solid #ff6b6b;
+        }
+
+        /* Header Styles */
+        .header {
+            background: transparent;
+            color: white;
+            padding: 2rem 0 1rem 0;
+            text-align: center;
+        }
+
+        .logo-text {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #FFD700;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Payment Section */
+        .payment-section {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .payment-container {
+            background: #1a1a1a;
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid #2c5cc3;
+        }
+
+        .payment-title {
+            color: #2c5cc3;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+
+        .order-summary {
+            background: #2d2d2d;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .order-title {
+            color: #ff6b6b;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .order-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .order-item {
+            padding: 0.5rem;
+            border-bottom: 1px solid #333;
+        }
+
+        .order-label {
+            color: #2c5cc3;
+            font-weight: bold;
+        }
+
+        .order-value {
+            color: #ffffff;
+        }
+
+        /* Payment Methods */
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .payment-method {
+            background: #2d2d2d;
+            padding: 1.5rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .payment-method:hover {
+            border-color: #2c5cc3;
+            transform: translateY(-5px);
+        }
+
+        .payment-method.selected {
+            border-color: #ff6b6b;
+            background: rgba(255, 107, 107, 0.1);
+        }
+
+        .payment-method h3 {
+            color: #2c5cc3;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .payment-method p {
+            color: #cccccc;
+            margin-bottom: 1rem;
+        }
+
+        /* Form Styles */
+        .payment-form {
+            background: #2d2d2d;
+            padding: 1.5rem;
+            border-radius: 10px;
+        }
+
+        .form-title {
+            color: #ff6b6b;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            color: #2c5cc3;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border-radius: 5px;
+            border: 1px solid #333;
+            background: #1a1a1a;
+            color: white;
+            font-size: 1rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        /* Buttons */
+        .btn-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .back-btn {
+            background: #333;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: background 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .back-btn:hover {
+            background: #444;
+        }
+
+        .confirm-btn {
+            background: linear-gradient(135deg, #2c5cc3, #1e3a8a);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: transform 0.3s ease;
+            flex: 1;
+        }
+
+        .confirm-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+            border-top: 3px solid #2c5cc3;
+        }
+
+        .back-home {
+            display: inline-block;
+            color: #2c5cc3;
+            text-decoration: none;
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .logo-text {
+                font-size: 2rem;
+            }
+
+            .order-details, .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .btn-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <div class="brand-logo">APM</div>
+                <div class="brand-text">
+                    <strong>APM Store</strong>
+                    <span>Noida</span>
+                </div>
+            </div>
+            <div class="menu-toggle" id="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="index.html#story">Our Story</a></li>
+                <li><a href="index.html#features">Why APM</a></li>
+                <li><a href="index.html#reviews">Reviews</a></li>
+                <li><a href="index.html#follow">Follow Us</a></li>
+                <li class="nav-cta"><a href="payment.html" class="active">Make a Payment</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="header">
+        <h1 class="golden-text">APM STORE NOIDA</h1>
+        <p class="tagline">AFFORDABLE PRICE MOBILE</p>
+    </header>
+
+    <section class="payment-section">
+        <div class="payment-container">
+            <h2 class="payment-title">Secure Payment</h2>
+            
+            <div class="order-summary">
+                <h3 class="order-title">Order Summary</h3>
+                <div class="order-details">
+                    <div class="order-item">
+                        <div class="order-label">Product</div>
+                        <div class="order-value" id="productName">Samsung Galaxy A25</div>
+                    </div>
+                    <div class="order-item">
+                        <div class="order-label">Price</div>
+                        <div class="order-value" id="productPrice">₹18,999</div>
+                    </div>
+                    <div class="order-item">
+                        <div class="order-label">Delivery</div>
+                        <div class="order-value">Free Delivery in Noida</div>
+                    </div>
+                    <div class="order-item">
+                        <div class="order-label">Warranty</div>
+                        <div class="order-value">3 Months Extended Warranty</div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="form-title">Select Payment Method</h3>
+            <div class="payment-methods">
+                <div class="payment-method" onclick="selectPaymentMethod(this, 'card')">
+                    <h3>💳 Credit/Debit Card</h3>
+                    <p>Pay securely with your credit or debit card</p>
+                    <p>All major cards accepted: Visa, Mastercard, Rupay</p>
+                </div>
+                <div class="payment-method" onclick="selectPaymentMethod(this, 'upi')">
+                    <h3>📱 UPI Payment</h3>
+                    <p>Pay instantly using UPI</p>
+                    <p>Google Pay, PhonePe, Paytm, BHIM UPI</p>
+                </div>
+                <div class="payment-method" onclick="selectPaymentMethod(this, 'netbanking')">
+                    <h3>🏦 Net Banking</h3>
+                    <p>Pay directly from your bank account</p>
+                    <p>All major banks supported</p>
+                </div>
+                <div class="payment-method" onclick="selectPaymentMethod(this, 'cod')">
+                    <h3>💰 Cash on Delivery</h3>
+                    <p>Pay when you receive the product</p>
+                    <p>No additional charges</p>
+                </div>
+            </div>
+
+            <div class="payment-form">
+                <h3 class="form-title">Payment Details</h3>
+                <div id="codFields" style="display: none;">
+                    <p style="color: #cccccc; text-align: center; margin-bottom: 1rem;">No payment details required for Cash on Delivery. Just confirm your order and our team will contact you.</p>
+                </div>
+                <div id="cardFields">
+                    <div class="form-group">
+                        <label for="cardName">Name on Card</label>
+                        <input type="text" id="cardName" placeholder="Enter name as it appears on card">
+                    </div>
+                    <div class="form-group">
+                        <label for="cardNumber">Card Number</label>
+                        <input type="text" id="cardNumber" placeholder="Enter card number">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="expiryDate">Expiry Date</label>
+                            <input type="text" id="expiryDate" placeholder="MM/YY">
+                        </div>
+                        <div class="form-group">
+                            <label for="cvv">CVV</label>
+                            <input type="text" id="cvv" placeholder="Enter CVV">
+                        </div>
+                    </div>
+                </div>
+                <div id="upiFields" style="display: none;">
+                    <div class="form-group">
+                        <label for="upiId">UPI ID</label>
+                        <input type="text" id="upiId" placeholder="Enter your UPI ID (e.g. mobile@upi)">
+                    </div>
+                </div>
+                <div id="netBankingFields" style="display: none;">
+                    <div class="form-group">
+                        <label for="bank">Select Bank</label>
+                        <select id="bank">
+                            <option value="">-- Select your bank --</option>
+                            <option value="sbi">State Bank of India</option>
+                            <option value="hdfc">HDFC Bank</option>
+                            <option value="icici">ICICI Bank</option>
+                            <option value="axis">Axis Bank</option>
+                            <option value="kotak">Kotak Mahindra Bank</option>
+                            <option value="other">Other Bank</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="address">Delivery Address</label>
+                    <input type="text" id="address" placeholder="Enter your full address">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="city">City</label>
+                        <input type="text" id="city" placeholder="Enter city">
+                    </div>
+                    <div class="form-group">
+                        <label for="pincode">Pincode</label>
+                        <input type="text" id="pincode" placeholder="Enter pincode">
+                    </div>
+                </div>
+            </div>
+
+            <div class="btn-container">
+                <a href="products.html" class="back-btn">← Back to Products</a>
+                <button class="confirm-btn" onclick="confirmPayment()">Confirm & Place Order</button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2024 APM STORE NOIDA. All rights reserved.</p>
+        <p>Join our journey to make quality mobile technology accessible to everyone!</p>
+        <a href="index.html" class="back-home">← Back to Home</a>
+    </footer>
+
+    <script>
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = document.getElementById('nav-links');
+        mobileMenu?.addEventListener('click', () => {
+            navLinks?.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks?.classList.remove('active');
+            });
+        });
+
+        let selectedPaymentMethod = null;
+
+        // Get product info from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const productName = urlParams.get('product') || 'Samsung Galaxy A25';
+        const productPrice = urlParams.get('price') || '18999';
+        
+        // Set product info in the order summary
+        document.getElementById('productName').textContent = productName;
+        document.getElementById('productPrice').textContent = `₹${parseInt(productPrice).toLocaleString()}`;
+
+        // Select payment method
+        function selectPaymentMethod(element, method) {
+            // Remove selected class from all payment methods
+            document.querySelectorAll('.payment-method').forEach(methodElement => {
+                methodElement.classList.remove('selected');
+            });
+            
+            // Add selected class to clicked payment method
+            element.classList.add('selected');
+            selectedPaymentMethod = method;
+            
+            // Show/hide appropriate form fields based on selected method
+            document.getElementById('codFields').style.display = 'none';
+            document.getElementById('cardFields').style.display = 'none';
+            document.getElementById('upiFields').style.display = 'none';
+            document.getElementById('netBankingFields').style.display = 'none';
+            
+            switch(method) {
+                case 'cod':
+                    document.getElementById('codFields').style.display = 'block';
+                    break;
+                case 'card':
+                    document.getElementById('cardFields').style.display = 'block';
+                    break;
+                case 'upi':
+                    document.getElementById('upiFields').style.display = 'block';
+                    break;
+                case 'netbanking':
+                    document.getElementById('netBankingFields').style.display = 'block';
+                    break;
+            }
+        }
+
+        // Confirm payment
+        function confirmPayment() {
+            if (!selectedPaymentMethod) {
+                alert('Please select a payment method');
+                return;
+            }
+            
+            const address = document.getElementById('address').value;
+            const city = document.getElementById('city').value;
+            const pincode = document.getElementById('pincode').value;
+            
+            if (!address || !city || !pincode) {
+                alert('Please fill in all required fields');
+                return;
+            }
+            
+            // Check payment method specific fields
+            switch(selectedPaymentMethod) {
+                case 'card':
+                    const cardName = document.getElementById('cardName').value;
+                    const cardNumber = document.getElementById('cardNumber').value;
+                    const expiryDate = document.getElementById('expiryDate').value;
+                    const cvv = document.getElementById('cvv').value;
+                    
+                    if (!cardName || !cardNumber || !expiryDate || !cvv) {
+                        alert('Please fill in all card details');
+                        return;
+                    }
+                    break;
+                case 'upi':
+                    const upiId = document.getElementById('upiId').value;
+                    if (!upiId) {
+                        alert('Please enter your UPI ID');
+                        return;
+                    }
+                    break;
+                case 'netbanking':
+                    const bank = document.getElementById('bank').value;
+                    if (!bank) {
+                        alert('Please select your bank');
+                        return;
+                    }
+                    break;
+                // For COD, no additional payment details needed
+            }
+            
+            alert(`Order placed successfully!\n\nProduct: ${productName}\nAmount: ₹${parseInt(productPrice).toLocaleString()}\nPayment Method: ${selectedPaymentMethod.toUpperCase()}\n\nOur team will contact you for order confirmation.`);
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>
